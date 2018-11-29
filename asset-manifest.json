@@ -1,14 +1,13 @@
 {
-  "main.css": "/kwitter/static/css/main.cf44e141.chunk.css",
-  "main.js": "/kwitter/static/js/main.8abff466.chunk.js",
-  "main.js.map": "/kwitter/static/js/main.8abff466.chunk.js.map",
-  "static/js/1.2dd891c4.chunk.js": "/kwitter/static/js/1.2dd891c4.chunk.js",
-  "static/js/1.2dd891c4.chunk.js.map": "/kwitter/static/js/1.2dd891c4.chunk.js.map",
+  "main.css": "/kwitter/static/css/main.94946b44.chunk.css",
+  "main.js": "/kwitter/static/js/main.c2e41463.chunk.js",
+  "main.js.map": "/kwitter/static/js/main.c2e41463.chunk.js.map",
+  "static/js/1.0707913c.chunk.js": "/kwitter/static/js/1.0707913c.chunk.js",
+  "static/js/1.0707913c.chunk.js.map": "/kwitter/static/js/1.0707913c.chunk.js.map",
   "runtime~main.js": "/kwitter/static/js/runtime~main.1bef2d23.js",
   "runtime~main.js.map": "/kwitter/static/js/runtime~main.1bef2d23.js.map",
-  "static/media/logo.svg": "/kwitter/static/media/logo.5d5d9eef.svg",
-  "static/css/main.cf44e141.chunk.css.map": "/kwitter/static/css/main.cf44e141.chunk.css.map",
+  "static/css/main.94946b44.chunk.css.map": "/kwitter/static/css/main.94946b44.chunk.css.map",
   "index.html": "/kwitter/index.html",
-  "precache-manifest.206b07b46a416a09b107ba14a94c2863.js": "/kwitter/precache-manifest.206b07b46a416a09b107ba14a94c2863.js",
+  "precache-manifest.31e13694bb9eadcae56bc3f5df6a0728.js": "/kwitter/precache-manifest.31e13694bb9eadcae56bc3f5df6a0728.js",
   "service-worker.js": "/kwitter/service-worker.js"
 }
