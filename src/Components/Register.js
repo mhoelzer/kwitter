@@ -9,3 +9,6 @@ class Register extends Component {
 };
 
 export default Register;
+
+
+// cancel button clears info?
