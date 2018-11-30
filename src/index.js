@@ -9,7 +9,7 @@ const Index = () => (
     <BrowserRouter >
         <App />
     </BrowserRouter>
-);
+); 
 
 ReactDOM.render(<Index />, document.getElementById('root'));
 
