@@ -2,12 +2,32 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 
 class Login extends Component {
+    state = {
+        username: "",
+        password: ""
+    };
+    handleChangeUsername = event => {
+        this.setState({
+            username: event.target.value
+        })
+    };
+    handleChangePassword = event => {
+        this.setState({
+            password: event.target.value
+        })
+    };
     render() {
+        const { username, password } = this.state;
         return (
             <fieldset>
                 <legend>Login</legend>
-                <p>Username: <input placeholder="Username" type="text" className="loginInputs"></input></p>
-                <p>Password: <input placeholder="Passowrd" type="text" className="loginInputs"></input></p>
+                <p>Username:
+                    {/* make sure to add the onchanges otherwise value wont work */}
+                    <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleChangeUsername} value={username}></input>
+                </p>
+                <p>Password:
+                    <input placeholder="Password" type="text" className="loginInputs" onChange={this.handleChangePassword} value={password}></input>
+                </p>
                 {/* change the tp="" if needed */}
                 <Link to="/profile">
                     <button>Login!</button>
