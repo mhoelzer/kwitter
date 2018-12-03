@@ -6,16 +6,18 @@ class Login extends Component {
         username: "",
         password: ""
     };
-    handleChangeUsername = event => {
+
+    handleUsernameChange = event => {
         this.setState({
             username: event.target.value
         })
     };
-    handleChangePassword = event => {
+    handlePasswordChange = event => {
         this.setState({
             password: event.target.value
         })
     };
+    
     render() {
         const { username, password } = this.state;
         return (
@@ -23,10 +25,10 @@ class Login extends Component {
                 <legend>Login</legend>
                 <p>Username:
                     {/* make sure to add the onchanges otherwise value wont work */}
-                    <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleChangeUsername} value={username}></input>
+                    <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleUsernameChange} value={username}></input>
                 </p>
                 <p>Password:
-                    <input placeholder="Password" type="text" className="loginInputs" onChange={this.handleChangePassword} value={password}></input>
+                    <input placeholder="Password" type="text" className="loginInputs" onChange={this.handlePasswordChange} value={password}></input>
                 </p>
                 {/* change the tp="" if needed */}
                 <Link to="/profile">
