@@ -17,7 +17,7 @@ class Login extends Component {
             password: event.target.value
         })
     };
-    
+
     render() {
         const { username, password } = this.state;
         return (
@@ -28,7 +28,7 @@ class Login extends Component {
                     <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleUsernameChange} value={username}></input>
                 </p>
                 <p>Password:
-                    <input placeholder="Password" type="text" className="loginInputs" onChange={this.handlePasswordChange} value={password}></input>
+                    <input placeholder="Password" type="password" className="loginInputs" onChange={this.handlePasswordChange} value={password}></input>
                 </p>
                 {/* change the tp="" if needed */}
                 <Link to="/profile">
