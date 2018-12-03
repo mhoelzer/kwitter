@@ -9,7 +9,7 @@ class NavBar extends Component {
                 <br />
                 <NavLink exact to="/register" activeClassName="activeLink">Register</NavLink>
                 <br />
-                <NavLink exact to="/messages" activeClassName="activeLink">Messages</NavLink>
+                <NavLink exact to="/messages" activeClassName="activeLink">Messages!</NavLink>
             </React.Fragment>
         );
     };
