@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import { Button, Card, Form, Header, Image, Input, } from "semantic-ui-react";
 
 class Login extends Component {
     state = {
@@ -21,20 +22,22 @@ class Login extends Component {
     render() {
         const { username, password } = this.state;
         return (
-            <fieldset>
-                <legend>Login</legend>
-                <p>Username:
+            // <Card>
+                <Form>
+                    <Header as="h1">Login</Header>
+                    <p>Username:
                     {/* make sure to add the onchanges otherwise value wont work */}
-                    <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleUsernameChange} value={username}></input>
-                </p>
-                <p>Password:
+                        <input placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleUsernameChange} value={username}></input>
+                    </p>
+                    <p>Password:
                     <input placeholder="Password" type="password" className="loginInputs" onChange={this.handlePasswordChange} value={password}></input>
-                </p>
-                {/* change the tp="" if needed */}
-                <Link to="/profile">
-                    <button>Login!</button>
-                </Link>
-            </fieldset>
+                    </p>
+                    {/* change the tp="" if needed */}
+                    <Link to="/profile">
+                        <button>Login!</button>
+                    </Link>
+                </Form>
+            // </Card>
         );
     };
 };
