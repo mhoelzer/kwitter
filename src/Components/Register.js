@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from "../logo.png"
 import { connect } from 'react-redux';
 import { register } from "../Actions/actions.js";
+import { Button, Form, Header, Input } from "semantic-ui-react";
 
 class Register extends Component {
     state = {
@@ -44,29 +44,22 @@ class Register extends Component {
     render() {
         // const { username, password, displayName } = this.state;
         return (
-            <fieldset>
-                <legend>Register</legend>
-                <p>ALL FIELDS MUST HAVE 3-20 CHARACTERS</p>
-                <p>Username:
+            <React.Fragment>
+                <Header as="h1">Register</Header>
+                <Form size="large">
+                    <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
                     {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
                     {/* required means it has to have something in it */}
                     {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
-                    <input required placeholder="Username" type="text" className="loginInputs" autoFocus onChange={this.handleUsernameChange}></input>
-                </p>
-                <p>Display Name:
-                    {/* make sure to add the onchanges otherwise value wont work */}
-                    <input required placeholder="Display Name" type="text" className="loginInputs" onChange={this.handleDisplayNameChange}></input>
-                </p>
-                <p>Password:
-                    {/* could make change/see it based on checkbox */}
-                    <input required placeholder="Password" type="password" className="loginInputs" onChange={this.handlePasswordChange}></input>
-                </p>
-                {/* change the tp="" if needed */}
-                {/* <Link to="/profile"> */}
-                    <button onClick={this.handleRegister}>Create Your New Account!</button>
-                    <div>{this.props.result}</div>
-                {/* </Link> */}
-            </fieldset>
+                    <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} className="loginInputs" autoFocus onChange={this.handleUsernameChange} />
+                    <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} className="loginInputs" onChange={this.handleDisplayNameChange} />
+                    <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} className="loginInputs" onChange={this.handlePasswordChange} />
+                    <Link to="/profile"> {/* change the to="" if needed */}
+                        <Button onClick={this.handleRegister} positive large>Create Your New Account!</Button>
+                        {/* <div>{this.props.result}</div> */}
+                    </Link>
+                </Form>
+            </React.Fragment>
         );
     };
 };
