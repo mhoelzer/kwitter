@@ -51,13 +51,19 @@ class Register extends Component {
                     {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
                     {/* required means it has to have something in it */}
                     {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
-                    <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} className="loginInputs" autoFocus onChange={this.handleUsernameChange} />
-                    <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} className="loginInputs" onChange={this.handleDisplayNameChange} />
-                    <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} className="loginInputs" onChange={this.handlePasswordChange} />
-                    <Link to="/profile"> {/* change the to="" if needed */}
-                        <Button onClick={this.handleRegister} positive large>Create Your New Account!</Button>
-                        {/* <div>{this.props.result}</div> */}
-                    </Link>
+                    <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} autoFocus onChange={this.handleUsernameChange} />
+                    <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
+                    <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
+                    <Button.Group>
+                        <Link to="/profile"> {/* change the to="" if needed */}
+                            <Button onClick={this.handleRegister} positive large>Create Your New Account!</Button>
+                            {/* <div>{this.props.result}</div> */}
+                        </Link>
+                        <Button.Or />
+                        <Link to="/">
+                            <Button>Already Have an Account? Login Here!</Button>
+                        </Link>
+                    </Button.Group>
                 </Form>
             </React.Fragment>
         );
