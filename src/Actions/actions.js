@@ -32,7 +32,7 @@ export const register = registerData => dispatch => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
+        body: JSON.stringify(
             // cant just send reg js stuff; need to json it
             // typed as how api expects them
             // make sure pass these values  
@@ -40,19 +40,19 @@ export const register = registerData => dispatch => {
             // displayName,
             // password
             registerData
-        })
+        )
     })
         // hydrates body; always need for api b/c always returns json; if not, it would  be parsed diff
-        // .then(res => res.json()) // if immediately hydrate, it always assumes its correct, so ave to check
-        .then(res => {
-            // res.ok means it's in the 200 range; 
-            if (!res.ok) {
+        // .then(response => response.json()) // if immediately hydrate, it always assumes its correct, so ave to check
+        .then(response => {
+            // response.ok means it's in the 200 range; 
+            if (!response.ok) {
                 // throw from here, it goes to catch
-                res.json().then(err => {
+                response.json().then(err => {
                     throw err;
                 });
             }
-            return res.json(); // this is an else basically 
+            return response.json(); // this is an else basically 
         })
         .then(data => {
             // data looks like w/e we got for resposne in api/psotman 
@@ -65,7 +65,8 @@ export const register = registerData => dispatch => {
                 register: data,
                 result: "Successfully Registered!" // could make a <div>{this.props.result}</div> to display; reducer might use this value to put some  update
             })
-        }).catch(err => {
+        })
+        .catch(err => {
             // dispatch here on fail
             dispatch({
                 type: REGISTER_FAIL,

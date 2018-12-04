@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import logo from "../logo.png"
 import { connect } from 'react-redux';
 import { register } from "../Actions/actions.js";
 
@@ -45,6 +46,7 @@ class Register extends Component {
         return (
             <fieldset>
                 <legend>Register</legend>
+                <p>ALL FIELDS MUST HAVE 3-20 CHARACTERS</p>
                 <p>Username:
                     {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
                     {/* required means it has to have something in it */}
