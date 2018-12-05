@@ -65,15 +65,13 @@ class Register extends Component {
                                 <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
                                 <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
                                 <Button.Group>
-                                    <Link to="/profile"> {/* change the to="" if needed */}
-                                        <div>{this.props.result}</div>
-                                        <Button onClick={this.handleRegister} positive size="large">Create Your New Account!</Button>
-                                    </Link>
+                                    <Button onClick={this.handleRegister} positive size="large" to="/profile">Create Your New Account!</Button>
                                     <Button.Or />
                                     <Link to="/">
                                         <Button size="large">Already Have an Account? Login Here!</Button>
                                     </Link>
                                 </Button.Group>
+                                <div>{this.props.result}</div>
                             </Segment>
                         </Form>
                     </Grid.Column>

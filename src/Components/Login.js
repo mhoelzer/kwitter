@@ -48,15 +48,13 @@ class Login extends Component {
                                 <Button.Group>
                                     {/* redirect */}
                                     {/* connected react router */}
-                                    <Link to="/profile"> {/* change the to="" if needed */}
-                                        <Button onClick={this.handleLogin} positive size="large">Login to Your Account!</Button>
-                                        {/* <div>{this.props.result}</div> */}
-                                    </Link>
+                                    <Button onClick={this.handleLogin} positive size="large" to="/profile">Login to Your Account!</Button>
                                     <Button.Or />
                                     <Link to="/register">
                                         <Button size="large">Don't Have an Account? Register Here!</Button>
                                     </Link>
                                 </Button.Group>
+                                {/* <div>{this.props.result}</div> */}
                             </Segment>
                         </Form>
                     </Grid.Column>
