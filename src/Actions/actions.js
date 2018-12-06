@@ -1,21 +1,54 @@
+export const LOGIN = "LOGIN";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER = "REGISTER";
-export const REGISTER_FAIL = "REGISTER_FAIL";
+export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
-export const loginFailure = () => {
-    return {
-        type: LOGIN_FAILURE
-    }
-}
-
-export const loginSuccess = (token) => {
-    return {
-        type: LOGIN_SUCCESS,
-        payload: token
-    }
+export const routeForRegister = {
+    REGISTER_SUCCESS: '/profile',
+    REGISTER_FAILURE: '/register',
 };
+
+export const login = loginData => dispatch => {
+    dispatch({type: LOGIN});
+    fetch("https://kwitter-api.herokuapp.com/auth/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+    })
+        .then(response => {
+            if (!response.ok) {
+                response.json().then(err => {
+                    throw err;
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            // right now, we dont have an api thing to catch this stuff, so doing this will send it to the catch
+            if(data.success === false) {
+                throw ""
+            }
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: {
+                    token: data.token,
+                    id: data.id
+                },
+                login: data,
+                result: "Successful Login!" 
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: LOGIN_FAILURE,
+                result: "Failed to login"
+            })
+        })
+}
 
 // without default need samename in register
 // redux thunk = middleware (like express stuff where mw got reqs to go through it. here, each action goes through there(diaspatching thigng called register from reg.js and returns function (once return = inner function; redux sees it wants action obj, so inject dispatch in))); function inside function; when have action creator, it will inject dispatch for you and get registation data
@@ -69,8 +102,8 @@ export const register = registerData => dispatch => {
         .catch(err => {
             // dispatch here on fail
             dispatch({
-                type: REGISTER_FAIL,
-                result: "Failed to register" // get api err; usually user facing err
+                type: REGISTER_FAILURE,
+                result: `Failed to register.` // get api err; usually user facing err; get the errors.message and display that username isnt unique
             })
         })
 }
