@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Menu, Segment } from 'semantic-ui-react'
+import { Menu,} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
-export default class MenuExampleSecondaryPointing extends Component {
+export default class Navbar extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -10,19 +11,14 @@ export default class MenuExampleSecondaryPointing extends Component {
     const { activeItem } = this.state
 
     return (
-      <div>
         <Menu pointing secondary>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+          <Menu.Item as={Link} name='feed' active={activeItem === 'feed'} onClick={this.handleItemClick}
+          exact to='/feed' />
           <Menu.Item
-            name='messages'
-            active={activeItem === 'messages'}
+            name='profile' as={Link}
+            active={activeItem === 'profile'}
             onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='friends'
-            active={activeItem === 'friends'}
-            onClick={this.handleItemClick}
-          />
+            exact to ='/profile' />
           <Menu.Menu position='right'>
             <Menu.Item
               name='logout'
@@ -31,11 +27,6 @@ export default class MenuExampleSecondaryPointing extends Component {
             />
           </Menu.Menu>
         </Menu>
-
-        <Segment>
-          <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-        </Segment>
-      </div>
     )
   }
 }
