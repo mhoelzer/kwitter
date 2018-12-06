@@ -6,19 +6,10 @@ import Feed from "./Feed"
 import Profile from "./Profile"
 import { Switch, Route } from "react-router-dom";
 import Login from './Login';
-import  Register from './Register';
+import Register from './Register';
 import Messages from "./Messages";
 
 class App extends Component {
-  renderMain = () => (
-    <Fragment>
-      
-          <NavBar />
-        <MessagesList />
-    
-    </Fragment>
-  );
-
   render() {
     return (
       <React.Fragment>
