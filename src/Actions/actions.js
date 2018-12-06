@@ -4,6 +4,9 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER = "REGISTER";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const GET_MESSAGES = "GET_MESSAGES";
+export const ADD_MESS = "ADD_TEXT";
+
 
 export const routeForRegister = {
     REGISTER_SUCCESS: '/profile',

@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 
 class Messages extends Component {
     render() {
         return (
-            <div>Messages</div>
+            <Fragment>
+                <div>{this.props.text}</div>
+                <div>{this.props.userId}</div>
+                    <div>Kweeted</div>
+            </Fragment>
         );
     };
 };
