@@ -1,13 +1,13 @@
-import React, { Component, Fragment } from "react";
-import "./App.css";
-import Login from "./Login";
-import NavBar from "./NavBar";
-import Register from "./Register";
-import Messages from "./Messages";
+import React, { Component } from 'react';
+import './App.css';
+import Logout from "./Logout"
+import NavBar from "./NavBar"
+import Feed from "./Feed"
+import Profile from "./Profile"
 import { Switch, Route } from "react-router-dom";
-import { MessagesList } from "./index";
-import { Grid, GridColumn } from "semantic-ui-react"
-
+import Login from './Login';
+import  Register from './Register';
+import Messages from "./Messages";
 
 class App extends Component {
   renderMain = () => (
@@ -24,10 +24,12 @@ class App extends Component {
       <React.Fragment>
         <NavBar />
         <Switch>
+          <Route exact path="/feed" component={Feed} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/messages" component={Messages} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/" render={this.renderMain} />
         </Switch>
       </React.Fragment>
     );
