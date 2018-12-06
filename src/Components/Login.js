@@ -25,19 +25,14 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         })
+        // // push onto br hustory 
+        // this.props.history.push("/profile")
+        return <Redirect to="/profile"/>
     }
 
     render() {
-        const { username, password } = this.state;
         return (
             <div className="registerForm">
-                <style>{`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.registerForm {
-                        height: 100%;
-                    }
-                `}</style>
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as="h1" color="blue" textAlign="center">Login</Header>

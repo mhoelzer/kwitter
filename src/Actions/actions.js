@@ -5,6 +5,11 @@ export const REGISTER = "REGISTER";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 
+export const routeForRegister = {
+    REGISTER_SUCCESS: '/profile',
+    REGISTER_FAILURE: '/register',
+};
+
 export const login = loginData => dispatch => {
     dispatch({type: LOGIN});
     fetch("https://kwitter-api.herokuapp.com/auth/login", {
@@ -24,10 +29,9 @@ export const login = loginData => dispatch => {
         })
         .then(data => {
             // right now, we dont have an api thing to catch this stuff, so doing this will send it to the catch
-            if(data.success == false) {
+            if(data.success === false) {
                 throw ""
             }
-            // push onto br hustory 
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: {
@@ -99,7 +103,7 @@ export const register = registerData => dispatch => {
             // dispatch here on fail
             dispatch({
                 type: REGISTER_FAILURE,
-                result: "Failed to register" // get api err; usually user facing err
+                result: `Failed to register.` // get api err; usually user facing err; get the errors.message and display that username isnt unique
             })
         })
 }

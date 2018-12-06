@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { register } from "../Actions/actions.js";
+import { register, routeForRegister, REGISTER_FAILURE, REGISTER_SUCCESS } from "../Actions/actions.js";
 import { Button, Form, Grid, Header, Input, Segment } from "semantic-ui-react";
 
 class Register extends Component {
@@ -38,20 +38,16 @@ class Register extends Component {
             username: this.state.username,
             displayName: this.state.displayName,
             password: this.state.password
-        })
+        });
+        // push onto br hustory 
+        // this.props.history.push("/profile")
+        this.props.history.push(routeForRegister[REGISTER_SUCCESS] || routeForRegister[REGISTER_FAILURE]);
     }
 
     render() {
         // const { username, password, displayName } = this.state;
         return (
             <div className="registerForm">
-                <style>{`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.registerForm {
-                        height: 100%;
-                    }
-                `}</style>
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
                         <Header as="h1" color="blue" textAlign="center">Register a New Account</Header>
@@ -65,7 +61,10 @@ class Register extends Component {
                                 <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
                                 <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
                                 <Button.Group>
-                                    <Button onClick={this.handleRegister} positive size="large" to="/profile">Create Your New Account!</Button>
+                                    {/* <Link to="/profile"> 
+                                        <Button onClick={this.handleLogin} positive size="large">Login to Your Account!</Button>
+                                    </Link> */}
+                                    <Button onClick={this.handleRegister} positive size="large">Create Your New Account!</Button>
                                     <Button.Or />
                                     <Link to="/">
                                         <Button size="large">Already Have an Account? Login Here!</Button>
