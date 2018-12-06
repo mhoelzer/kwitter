@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Messages from "./Messages";
 import { getMessages } from "../Actions";
-import { Message } from "semantic-ui-react";
 
 const form = {
   MessagesList: {
@@ -18,28 +17,31 @@ class MessagesList extends Component {
   }
 
   render() {
+
     return (
     <Fragment>
-    {this.props.messages.map(Message => (
-        text={Message}   
-    ))}
+        <h2 form={form.MessagesList}> Messages</h2>
 
+        {this.props.messages.map(message => (
+        < key={message.id}
+            text={message.text}   
+        />
+
+    ))}
     </Fragment>
-    );
+        );
+    }
 }
 
-const mapStateProps = state => {
+ const mapStateToProps = (state) => {
   return { messages: state.messages.messages };
 };
 
-const mapDispatchProps = dispatch => {
+ const mapDispatchToProps = (dispatch) => {
   return {
     getMessages: () => {
       dispatch(getMessages())}
     }
   }
 
-  export default connect(
-      mapStateProps, 
-      mapDispatchProps
-        )(MessagesList);
+  export default connect(mapStateToProps, mapDispatchToProps)(MessagesList);
