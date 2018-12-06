@@ -1,18 +1,32 @@
-import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
+import React, { Component } from 'react'
+import { Menu,} from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
 
-class NavBar extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                <NavLink exact to="/" activeClassName="activeLink">Login</NavLink>
-                <br />
-                <NavLink exact to="/register" activeClassName="activeLink">Register</NavLink>
-                <br />
-                <NavLink exact to="/messages" activeClassName="activeLink">Messages</NavLink>
-            </React.Fragment>
-        );
-    };
-};
+export default class Navbar extends Component {
+  state = { activeItem: 'home' }
 
-export default NavBar;
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  render() {
+    const { activeItem } = this.state
+
+    return (
+        <Menu pointing secondary>
+          <Menu.Item as={Link} name='feed' active={activeItem === 'feed'} onClick={this.handleItemClick}
+          exact to='/feed' />
+          <Menu.Item
+            name='profile' as={Link}
+            active={activeItem === 'profile'}
+            onClick={this.handleItemClick}
+            exact to ='/profile' />
+          <Menu.Menu position='right'>
+            <Menu.Item
+              name='logout'
+              active={activeItem === 'logout'}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+        </Menu>
+    )
+  }
+}
