@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Messages from "./Messages";
-import { getMessages } from "../Actions";
+import { getMessages } from "../Actions/actions";
+import { Message } from "semantic-ui-react";
 
 const form = {
   MessagesList: {
@@ -23,7 +24,7 @@ class MessagesList extends Component {
         <h2 form={form.MessagesList}> Messages</h2>
 
         {this.props.messages.map(message => (
-        < key={message.id}
+        <Message key={message.id}
             text={message.text}   
         />
 

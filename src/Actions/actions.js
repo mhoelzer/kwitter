@@ -3,6 +3,9 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER = "REGISTER";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const GET_MESSAGES = "GET_MESSAGES";
+export const ADD_MESS = "ADD_TEXT";
+
 
 export const loginFailure = () => {
     return {
