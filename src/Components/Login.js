@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { login } from "../Actions/actions.js";
-import { Button, Form, Grid, Header, Input, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Input, Segment } from "semantic-ui-react";
+import logo from "../logo.png";
 
 class Login extends Component {
     state = {
@@ -27,7 +28,7 @@ class Login extends Component {
         })
         // // push onto br hustory 
         // this.props.history.push("/profile")
-        return <Redirect to="/profile"/>
+        return <Redirect to="/profile" />
     }
 
     render() {
@@ -35,7 +36,8 @@ class Login extends Component {
             <div className="registerForm">
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as="h1" color="blue" textAlign="center">Login</Header>
+                        <Image src={logo} size='medium' centered />
+                        <Header as="h1" color="yellow" textAlign="center">Login</Header>
                         <Form size="large">
                             <Segment stacked>
                                 <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} autoFocus onChange={this.handleUsernameChange} />
@@ -46,7 +48,7 @@ class Login extends Component {
                                     <Button onClick={this.handleLogin} positive size="large" to="/profile">Login to Your Account!</Button>
                                     <Button.Or />
                                     <Link to="/register">
-                                        <Button size="large">Don't Have an Account? Register Here!</Button>
+                                        <Button size="large" color="brown">Don't Have an Account? Register Here!</Button>
                                     </Link>
                                 </Button.Group>
                                 {/* <div>{this.props.result}</div> */}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { register, routeForRegister, REGISTER_FAILURE, REGISTER_SUCCESS } from "../Actions/actions.js";
-import { Button, Form, Grid, Header, Input, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Input, Segment } from "semantic-ui-react";
+import logo from "../logo.png";
 
 class Register extends Component {
     state = {
@@ -41,16 +42,18 @@ class Register extends Component {
         });
         // push onto br hustory 
         // this.props.history.push("/profile")
-        this.props.history.push(routeForRegister[REGISTER_SUCCESS] || routeForRegister[REGISTER_FAILURE]);
+        // this.props.history.push(routeForRegister[REGISTER_SUCCESS] || routeForRegister[REGISTER_FAILURE]);
     }
 
     render() {
         // const { username, password, displayName } = this.state;
+        const test = this.props.register ? "onClick={this.handleRegister}" : null;
         return (
             <div className="registerForm">
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as="h1" color="blue" textAlign="center">Register a New Account</Header>
+                        <Image src={logo} size='small' centered />
+                        <Header as="h1" color="yellow" textAlign="center">Register a New Account</Header>
                         <Form size="large">
                             <Segment stacked>
                                 <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
@@ -64,10 +67,10 @@ class Register extends Component {
                                     {/* <Link to="/profile"> 
                                         <Button onClick={this.handleLogin} positive size="large">Login to Your Account!</Button>
                                     </Link> */}
-                                    <Button onClick={this.handleRegister} positive size="large">Create Your New Account!</Button>
+                                    <Button positive size="large" >Create Your New Account!</Button>
                                     <Button.Or />
                                     <Link to="/">
-                                        <Button size="large">Already Have an Account? Login Here!</Button>
+                                        <Button size="large" color="brown">Already Have an Account? Login Here!</Button>
                                     </Link>
                                 </Button.Group>
                                 <div>{this.props.result}</div>
