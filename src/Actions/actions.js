@@ -8,6 +8,12 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESS = "ADD_TEXT";
 
+export const GET_USER ="GET_USER"
+export const GET_USER_SUCCESS ="GET_USER_SUCCESS"
+export const GET_USER_FAILURE ="GET_USER_FAILURE"
+
+
+
 export const routeForRegister = {
     REGISTER_SUCCESS: '/profile',
     REGISTER_FAILURE: '/register',
@@ -45,6 +51,11 @@ export const login = loginData => dispatch => {
                 result: "Successful Login!" 
             })
             dispatch(push("/profile"))
+
+            dispatch(
+                getUserInfo(data.id)
+            )
+
         })
         .catch(err => {
             dispatch({
@@ -53,6 +64,28 @@ export const login = loginData => dispatch => {
             })
         })
 }
+
+export const getUserInfo = (userId) => dispatch => {
+    dispatch({type: GET_USER,})
+    fetch(`https://kwitter-api.herokuapp.com/users/${userId}`)
+    .then(response =>{
+        if(!response.ok) {
+            response.json().then(err => {
+                throw err;
+            });
+        }
+        return response.json();
+    })
+    .then(data =>{
+        dispatch({type: GET_USER_SUCCESS, data: data.user})
+
+    })
+    .catch(err => {
+        dispatch({type: GET_USER_FAILURE, err})
+    })
+}
+
+
 
 // without default need samename in register
 // redux thunk = middleware (like express stuff where mw got reqs to go through it. here, each action goes through there(diaspatching thigng called register from reg.js and returns function (once return = inner function; redux sees it wants action obj, so inject dispatch in))); function inside function; when have action creator, it will inject dispatch for you and get registation data
