@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from "react-router-dom";
+import { ConnectedRouter, routerMiddleware, connectRouter } from "connected-react-router";
 import './index.css';
 import App from './Components/App';
 import * as serviceWorker from './serviceWorker';
@@ -9,21 +9,20 @@ import { applyMiddleware, compose, createStore } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import kwitterReducer from "./Reducers/reducer";
+import {createBrowserHistory} from "history"
 
+const history = createBrowserHistory();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 const store = createStore(
-    kwitterReducer,
-    // window is highest level obj on dom; basic redux store; what niddleware inside redux 
-    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    composeEnhancers(applyMiddleware(thunk))
+    connectRouter(history)(kwitterReducer),
+    composeEnhancers(applyMiddleware(routerMiddleware(history), thunk))
 )
 
 const Index = () => (
     <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
             <App />
-        </BrowserRouter>
+        </ConnectedRouter>
     </Provider>
 );
 
