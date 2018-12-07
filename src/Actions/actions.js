@@ -1,3 +1,4 @@
+
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER = "REGISTER";
@@ -5,6 +6,39 @@ export const REGISTER_FAIL = "REGISTER_FAIL";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESS = "ADD_TEXT";
+
+export const addMess = ({ message, token }) => dispatch => {
+    fetch('https://kwitter-api.herokuapp.com', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            'charset': "utf-8"
+        },
+        data: {'text' : message }
+    }).then(() => {
+        dispatch(getMessages());
+    }).catch(err => console.log(err));
+};
+
+export function getMessages() {
+    return function(dispatch) {
+        fetch
+        .get('https://kwitter-api.herokuapp.com')
+        .then(res => {
+            if (res.statusText === "OK") {
+                dispatch({
+                    type: GET_MESSAGES,
+                    payload: {
+                        messages: res.data.messages
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+}
 
 
 export const loginFailure = () => {

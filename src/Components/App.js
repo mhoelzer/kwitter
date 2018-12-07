@@ -8,21 +8,22 @@ import { Switch, Route } from "react-router-dom";
 import Login from './Login';
 import  Register from './Register';
 import Messages from "./Messages";
+import MessagesList from "./Messages";
 
 class App extends Component {
-  renderMain = () => (
-    <Fragment>
+ /* renderMain = () => (
+    <React.Fragment>
       
-          <NavBar />
         <MessagesList />
     
-    </Fragment>
-  );
+    </React.Fragment>
+  );*/
 
   render() {
     return (
       <React.Fragment>
         <NavBar />
+        <MessagesList />
         <Switch>
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/profile" component={Profile} />

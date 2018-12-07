@@ -19,6 +19,11 @@ export default class Navbar extends Component {
             active={activeItem === 'profile'}
             onClick={this.handleItemClick}
             exact to ='/profile' />
+          <Menu.Item
+          name='kweets' as={Link}
+          active={activeItem === 'kweets'}
+          onClick={this.handleItemClick}
+          exact to ='/messageslist' />
           <Menu.Menu position='right'>
             <Menu.Item
               name='logout'
