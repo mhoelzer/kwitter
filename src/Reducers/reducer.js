@@ -95,7 +95,7 @@ const kwitterReducer = (state = initialState, action) => {
       };
     case LOGOUT_FAILURE:
       return state;
-    // always need to return somehtign
+    // always need to return somehtign; could combine all of the cases with just the return state, but it doesnt waste that much time to not have it 
     default:
       return state;
   }

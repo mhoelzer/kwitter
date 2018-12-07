@@ -147,7 +147,12 @@ export const register = (registerData, history) => dispatch => {
         result: "Successfully Registered!" // could make a <div>{this.props.result}</div> to display; reducer might use this value to put some  update
       });
       dispatch(push("/profile"));
-      dispatch(login(data.id));
+      dispatch(
+        login({
+          username: registerData.username,
+          password: registerData.password
+        })
+      ); //gets loginData w. un and p, so need it as an obj; haveing only the username and password is because thats what the rD needs
     })
     .catch(err => {
       // dispatch here on fail
