@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import Logout from "./Logout";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
-  state = { activeItem: "home" };
+  state = { activeItem: "profile" };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
@@ -28,13 +29,7 @@ export default class Navbar extends Component {
           exact
           to="/profile"
         />
-        <Menu.Menu position="right">
-          <Menu.Item
-            name="logout"
-            active={activeItem === "logout"}
-            onClick={this.handleItemClick}
-          />
-        </Menu.Menu>
+        <Logout />
       </Menu>
     );
   }

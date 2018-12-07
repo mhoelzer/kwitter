@@ -1,13 +1,16 @@
 import {
+  GET_USER,
+  GET_USER_FAILURE,
+  GET_USER_SUCCESS,
   LOGIN,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
   REGISTER,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
-  GET_USER,
-  GET_USER_FAILURE,
-  GET_USER_SUCCESS
+  LOGOUT,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS
 } from "../Actions/actions";
 
 const initialState = {
@@ -16,12 +19,6 @@ const initialState = {
     token: null,
     id: ""
   },
-  login: {},
-  loginResult: "",
-  // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
-  register: {},
-  registerResult: "", // result is string, so default that
-  userId: null,
   loggedInUser: {
     id: 0,
     username: "",
@@ -30,7 +27,16 @@ const initialState = {
     createdAt: "",
     updatedAt: "",
     messages: []
-  }
+  },
+  // logoutUser: {
+  //   succes:
+  // }
+  login: {},
+  loginResult: "",
+  // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
+  register: {},
+  registerResult: "", // result is string, so default that
+  userId: null
 };
 
 const kwitterReducer = (state = initialState, action) => {
@@ -78,6 +84,16 @@ const kwitterReducer = (state = initialState, action) => {
         loggedInUser: action.data
       };
     case GET_USER_FAILURE:
+      return state;
+    case LOGOUT:
+      return state;
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loggedInUser: initialState.loggedInUser,
+        authentication: initialState.authentication
+      };
+    case LOGOUT_FAILURE:
       return state;
     // always need to return somehtign
     default:

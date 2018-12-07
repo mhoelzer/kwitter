@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  register,
-  routeForRegister,
-  REGISTER_FAILURE,
-  REGISTER_SUCCESS
-} from "../Actions/actions.js";
+import { register } from "../Actions/actions.js";
 import {
   Button,
   Form,
@@ -140,6 +135,4 @@ export default connect(
   mapDispatchToProps
 )(Register);
 
-// cancel button clears info?
-// could add in validations?
 // confirm password by being exactly the same?
