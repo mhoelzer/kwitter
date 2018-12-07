@@ -1,3 +1,4 @@
+import {push} from "connected-react-router";
 export const LOGIN = "LOGIN";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -6,7 +7,6 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESS = "ADD_TEXT";
-
 
 export const routeForRegister = {
     REGISTER_SUCCESS: '/profile',
@@ -44,6 +44,7 @@ export const login = loginData => dispatch => {
                 login: data,
                 result: "Successful Login!" 
             })
+            dispatch(push("/profile"))
         })
         .catch(err => {
             dispatch({
@@ -56,7 +57,7 @@ export const login = loginData => dispatch => {
 // without default need samename in register
 // redux thunk = middleware (like express stuff where mw got reqs to go through it. here, each action goes through there(diaspatching thigng called register from reg.js and returns function (once return = inner function; redux sees it wants action obj, so inject dispatch in))); function inside function; when have action creator, it will inject dispatch for you and get registation data
 // sees value is action obj, not function, so pass dispatch value; could also just do the simple ones (returns action obj when returns obj likr the type:...), even with thunk but that isnt async
-export const register = registerData => dispatch => {
+export const register = (registerData, history) => dispatch => {
     // dispatch b4 fetch b/c have comp that wants to render loading spinner or something about waitingo n api req
     dispatch({
         type: REGISTER
@@ -101,6 +102,7 @@ export const register = registerData => dispatch => {
                 register: data,
                 result: "Successfully Registered!" // could make a <div>{this.props.result}</div> to display; reducer might use this value to put some  update
             })
+            dispatch(push("/profile"))
         })
         .catch(err => {
             // dispatch here on fail

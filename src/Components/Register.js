@@ -40,14 +40,9 @@ class Register extends Component {
             displayName: this.state.displayName,
             password: this.state.password
         });
-        // push onto br hustory 
-        // this.props.history.push("/profile")
-        // this.props.history.push(routeForRegister[REGISTER_SUCCESS] || routeForRegister[REGISTER_FAILURE]);
     }
 
     render() {
-        // const { username, password, displayName } = this.state;
-        const test = this.props.register ? "onClick={this.handleRegister}" : null;
         return (
             <div className="registerForm">
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
@@ -64,10 +59,7 @@ class Register extends Component {
                                 <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
                                 <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
                                 <Button.Group>
-                                    {/* <Link to="/profile"> 
-                                        <Button onClick={this.handleLogin} positive size="large">Login to Your Account!</Button>
-                                    </Link> */}
-                                    <Button positive size="large" >Create Your New Account!</Button>
+                                    <Button positive size="large" onClick={this.handleRegister}>Create Your New Account!</Button>
                                     <Button.Or />
                                     <Link to="/">
                                         <Button size="large" color="brown">Already Have an Account? Login Here!</Button>

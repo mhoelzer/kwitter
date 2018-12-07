@@ -26,9 +26,6 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         })
-        // // push onto br hustory 
-        // this.props.history.push("/profile")
-        return <Redirect to="/profile" />
     }
 
     render() {
