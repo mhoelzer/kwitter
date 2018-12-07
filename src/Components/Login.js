@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import { Button, Form, Grid, Header, Input, Segment } from "semantic-ui-react";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
+import { login } from "../Actions/actions.js";
+import { Button, Form, Grid, Header, Image, Input, Segment } from "semantic-ui-react";
+import logo from "../logo.png";
 
 class Login extends Component {
     state = {
@@ -18,46 +21,53 @@ class Login extends Component {
             password: event.target.value
         })
     };
+    handleLogin = event => {
+        this.props.login({
+            username: this.state.username,
+            password: this.state.password
+        })
+    }
 
     render() {
-        const { username, password } = this.state;
         return (
-            <React.Fragment className="registerForm">
-                <style>{`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.registerForm {
-                        height: 100%;
-                    }
-                `}</style>
+            <div className="registerForm">
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as="h1" color="blue" textAlign="center">Login</Header>
+                        <Image src={logo} size='medium' centered />
+                        <Header as="h1" color="yellow" textAlign="center">Login</Header>
                         <Form size="large">
                             <Segment stacked>
                                 <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} autoFocus onChange={this.handleUsernameChange} />
                                 <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
                                 <Button.Group>
-                                    <Link to="/profile"> {/* change the to="" if needed */}
-                                        <Button onClick={this.handleRegister} positive size="large">Login to Your Account!</Button>
-                                        {/* <div>{this.props.result}</div> */}
-                                    </Link>
+                                    {/* redirect */}
+                                    {/* connected react router */}
+                                    <Button onClick={this.handleLogin} positive size="large" to="/profile">Login to Your Account!</Button>
                                     <Button.Or />
                                     <Link to="/register">
-                                        <Button size="large">Don't Have an Account? Register Here!</Button>
+                                        <Button size="large" color="brown">Don't Have an Account? Register Here!</Button>
                                     </Link>
                                 </Button.Group>
+                                {/* <div>{this.props.result}</div> */}
                             </Segment>
                         </Form>
                     </Grid.Column>
                 </Grid>
-            </React.Fragment>
+            </div>
         );
     };
 };
-
-export default Login;
-
+const mapStateToProps = (state) => {
+    return {
+        result: state.loginResult
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (loginData) => dispatch(login(loginData))
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 // 1.) User is able to enter username/password and access their account --> input boxes
 // 2.) URL should be on "/"
 // 3.) logging in takes you to the profile page --> need login button linked to profile

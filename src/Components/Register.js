@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { register } from "../Actions/actions.js";
-import { Button, Form, Grid, Header, Input, Segment } from "semantic-ui-react";
+import { register, routeForRegister, REGISTER_FAILURE, REGISTER_SUCCESS } from "../Actions/actions.js";
+import { Button, Form, Grid, Header, Image, Input, Segment } from "semantic-ui-react";
+import logo from "../logo.png";
 
 class Register extends Component {
     state = {
@@ -38,47 +39,38 @@ class Register extends Component {
             username: this.state.username,
             displayName: this.state.displayName,
             password: this.state.password
-        })
+        });
     }
 
     render() {
-        // const { username, password, displayName } = this.state;
         return (
-            <React.Fragment className="registerForm">
-                <style>{`
-                    body > div,
-                    body > div > div,
-                    body > div > div > div.registerForm {
-                        height: 100%;
-                    }
-                `}</style>
+            <div className="registerForm">
                 <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as="h1" color="blue" textAlign="center">Register a New Account</Header>
+                        <Image src={logo} size='small' centered />
+                        <Header as="h1" color="yellow" textAlign="center">Register a New Account</Header>
                         <Form size="large">
-                        <Segment stacked>
-                            <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
-                            {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
-                            {/* required means it has to have something in it */}
-                            {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
-                            <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} autoFocus onChange={this.handleUsernameChange} />
-                            <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
-                            <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
-                            <Button.Group>
-                                <Link to="/profile"> {/* change the to="" if needed */}
-                                    <Button onClick={this.handleRegister} positive size="large">Create Your New Account!</Button>
-                                    {/* <div>{this.props.result}</div> */}
-                                </Link>
-                                <Button.Or />
-                                <Link to="/">
-                                    <Button size="large">Already Have an Account? Login Here!</Button>
-                                </Link>
-                            </Button.Group>
+                            <Segment stacked>
+                                <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
+                                {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
+                                {/* required means it has to have something in it */}
+                                {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
+                                <Form.Field label="Username:" required placeholder="Username" type="text" control={Input} autoFocus onChange={this.handleUsernameChange} />
+                                <Form.Field label="Display Name:" required placeholder="Display Name" type="text" control={Input} onChange={this.handleDisplayNameChange} />
+                                <Form.Field label="Password:" required placeholder="Password" type="password" control={Input} onChange={this.handlePasswordChange} />
+                                <Button.Group>
+                                    <Button positive size="large" onClick={this.handleRegister}>Create Your New Account!</Button>
+                                    <Button.Or />
+                                    <Link to="/">
+                                        <Button size="large" color="brown">Already Have an Account? Login Here!</Button>
+                                    </Link>
+                                </Button.Group>
+                                <div>{this.props.result}</div>
                             </Segment>
                         </Form>
-                        </Grid.Column>
+                    </Grid.Column>
                 </Grid>
-            </React.Fragment>
+            </div>
         );
     };
 };
@@ -91,16 +83,12 @@ const mapStateToProps = (state) => {
 }
 // thing get in is dispatch and reutnr props
 const mapDispatchToProps = (dispatch) => {
-    // const registerData = {
-
-    // }
     return {
         // neesd all state stuff to create action thing
         // register: (username, displayName, password) => dispatch(register(username, displayName, password))
         register: (registerData) => dispatch(register(registerData))
     }
 }
-
 // export default Register;
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
 
