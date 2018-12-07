@@ -7,9 +7,11 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESS = "ADD_TEXT";
+
 export const GET_USER ="GET_USER"
 export const GET_USER_SUCCESS ="GET_USER_SUCCESS"
 export const GET_USER_FAILURE ="GET_USER_FAILURE"
+
 
 
 export const routeForRegister = {
@@ -49,9 +51,11 @@ export const login = loginData => dispatch => {
                 result: "Successful Login!" 
             })
             dispatch(push("/profile"))
+
             dispatch(
                 getUserInfo(data.id)
             )
+
         })
         .catch(err => {
             dispatch({
@@ -60,6 +64,7 @@ export const login = loginData => dispatch => {
             })
         })
 }
+
 export const getUserInfo = (userId) => dispatch => {
     dispatch({type: GET_USER,})
     fetch(`https://kwitter-api.herokuapp.com/users/${userId}`)
@@ -79,6 +84,7 @@ export const getUserInfo = (userId) => dispatch => {
         dispatch({type: GET_USER_FAILURE, err})
     })
 }
+
 
 
 // without default need samename in register

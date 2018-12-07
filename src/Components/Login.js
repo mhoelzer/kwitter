@@ -57,6 +57,7 @@ class Login extends Component {
         );
     };
 };
+
 const mapStateToProps = (state) => {
     return {
         result: state.loginResult
@@ -68,6 +69,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
 // 1.) User is able to enter username/password and access their account --> input boxes
 // 2.) URL should be on "/"
 // 3.) logging in takes you to the profile page --> need login button linked to profile
