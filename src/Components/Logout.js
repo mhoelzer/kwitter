@@ -10,11 +10,9 @@ class Logout extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Menu.Menu position="right">
-          <Menu.Item name="logout" onClick={this.handleLogout} />
-        </Menu.Menu>
-      </React.Fragment>
+      <Menu.Menu position="right">
+        <Menu.Item name="logout" onClick={this.handleLogout} />
+      </Menu.Menu>
     );
   }
 }

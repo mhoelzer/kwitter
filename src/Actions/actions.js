@@ -1,4 +1,7 @@
 import { push } from "connected-react-router";
+export const DELETE_USER = "DELETE_USER";
+export const DELETE_USER_SUCCESS = "DELETE_USER_SUCCESS";
+export const DELETE_USER_FAILURE = "DELETE_USER_FAILURE";
 export const GET_USER = "GET_USER";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILURE = "GET_USER_FAILURE";
@@ -160,5 +163,32 @@ export const register = (registerData, history) => dispatch => {
         type: REGISTER_FAILURE,
         result: `Failed to register. Please enter a unique username, and make sure all fields have 3-20 characters.`
       });
+    });
+};
+
+export const deleteUser = token => dispatch => {
+  dispatch({ type: DELETE_USER });
+  fetch(`${kwitterURL}/users`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(response => {
+      if (!response.ok) {
+        response.json().then(err => {
+          throw err;
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      dispatch({ type: DELETE_USER_SUCCESS });
+      dispatch(push("/register"));
+      //   window.confirm("Are you sure?");
+    })
+    .catch(err => {
+      dispatch({ type: DELETE_USER_FAILURE, err });
     });
 };
