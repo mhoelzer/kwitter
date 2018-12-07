@@ -44,7 +44,7 @@ import {connect} from "react-redux"
           >
             <Menu.Item as="a">{this.props.displayName}</Menu.Item>
             <Menu.Item as="a">{this.props.about}</Menu.Item>
-            <Menu.Item as={Link} to ="/EditProfile">
+            <Menu.Item as={Link} to ="/editprofile">
             edit Profile
             </Menu.Item>
           </Sidebar>
