@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mhoelzer.github.io/kwitter/",
   "dependencies": {
+    "axios": "^0.18.0",
     "connected-react-router": "^4.5.0",
     "gh-pages": "^2.0.1",
     "history": "^4.7.2",

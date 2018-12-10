@@ -17,6 +17,40 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const ADD_MESS = "ADD_TEXT";
 
+
+export const addMess = ({ message, token }) => dispatch => {
+    fetch('https://kwitter-api.herokuapp.com', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            'charset': "utf-8"
+        },
+        data: {'text' : message }
+    }).then(() => {
+        dispatch(getMessages());
+    }).catch(err => console.log(err));
+};
+
+export function getMessages() {
+    return function(dispatch) {
+        fetch
+        .get('https://kwitter-api.herokuapp.com')
+        .then(res => {
+            if (res.statusText === "OK") {
+                dispatch({
+                    type: GET_MESSAGES,
+                    payload: {
+                        messages: res.data.messages
+                    }
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    };
+}
+
 const kwitterURL = "https://kwitter-api.herokuapp.com";
 
 export const login = loginData => dispatch => {

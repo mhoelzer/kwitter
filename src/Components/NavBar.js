@@ -13,26 +13,22 @@ export default class Navbar extends Component {
     const { activeItem } = this.state;
 
     return (
-      <Menu pointing secondary>
-        <Menu.Item
-          as={Link}
-          name="feed"
-          active={activeItem === "feed"}
+
+        <Menu pointing secondary>
+          <Menu.Item as={Link} name='feed' active={activeItem === 'feed'} onClick={this.handleItemClick}
+          exact to='/feed' />
+          <Menu.Item
+            name='profile' as={Link}
+            active={activeItem === 'profile'}
+            onClick={this.handleItemClick}
+            exact to ='/profile' />
+          <Menu.Item
+          name='kweets' as={Link}
+          active={activeItem === 'kweets'}
           onClick={this.handleItemClick}
-          exact
-          to="/feed"
-        />
-        <Menu.Item
-          name="profile"
-          as={Link}
-          active={activeItem === "profile"}
-          onClick={this.handleItemClick}
-          exact
-          to="/profile"
-        />
-        <DeleteUser/>
-        <Logout />
-      </Menu>
-    );
+          exact to ='/messageslist' />
+        <Logout/>
+        </Menu>
+    )
   }
 }
