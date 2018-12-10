@@ -9,25 +9,26 @@ import { Button } from "semantic-ui-react";
 
 class DeleteUser extends Component {
   handleDeleteUser = event => {
-    this.props.deleteUser();
+    this.props.deleteUser(this.props.token);
   };
   render() {
     return (
-        <Button onClick={this.handleDeleteUser}>DeleteUser</Button>
+        <Button onClick={this.handleDeleteUser}>Delete User</Button>
     )
   }
 }
-// const mapStateToProps = state => {
-//     return {
-//         token: state.authorization.token
-//     }
-// }
+
+const mapStateToProps = state => {
+    return {
+        token: state.authentication.token
+    }
+}
 const mapDispatchToProps = dispatch => {
   return {
     deleteUser: (token) => dispatch(deleteUser(token))
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(DeleteUser);

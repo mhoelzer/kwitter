@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-class Messages extends Component {
+class Message extends Component {
     render() {
         return (
             <Fragment>
@@ -12,4 +12,4 @@ class Messages extends Component {
     };
 };
 
-export default Messages;
+export default Message;

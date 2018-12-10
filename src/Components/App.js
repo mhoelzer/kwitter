@@ -7,8 +7,8 @@ import { Switch, Route } from "react-router-dom";
 import Login from './Login';
 import EditProfile from './EditProfile'
 import Register from './Register';
-import Messages from "./Messages";
-import MessagesList from "./Messages";
+import Message from "./Message";
+import MessagesList from "./Message";
 
 class App extends Component {
   render() {
@@ -22,7 +22,6 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/editprofile" component={EditProfile} />
-          <Route exact path="/messages" component={Messages} />
         </Switch>
       </React.Fragment>
     );
