@@ -147,7 +147,7 @@ export const updateUser=userData => dispatch => {
     fetch("https://kwitter-api.herokuapp.com/users", {
         method: "PATCH",
         headers: {
-            // "Authorization": `Bearer ${token}`,
+         //   "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify(userData)
