@@ -16,7 +16,10 @@ import {
   LOGOUT_SUCCESS,
   REGISTER,
   REGISTER_FAILURE,
-  REGISTER_SUCCESS
+  REGISTER_SUCCESS,
+  UPDATE_USER,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE
 } from "../Actions/actions";
 
 const initialState = {
@@ -53,11 +56,11 @@ const kwitterReducer = (state = initialState, action) => {
     case DELETE_USER_FAILURE:
       return state;
     case DELETE_USER_SUCCESS:
-    // do a slice and filter of based on the id or something based on all users?
+      // do a slice and filter of based on the id or something based on all users?
       return {
         ...state,
         initialState
-      }
+      };
     case LOGIN:
       return state;
     case LOGIN_FAILURE:
@@ -110,7 +113,7 @@ const kwitterReducer = (state = initialState, action) => {
       return {
         ...state,
         messages: action.payload.messages
-      }
+      };
     case LOGOUT:
       return state;
     case LOGOUT_SUCCESS:
@@ -122,6 +125,13 @@ const kwitterReducer = (state = initialState, action) => {
     case LOGOUT_FAILURE:
       return state;
     // always need to return somehtign; could combine all of the cases with just the return state, but it doesnt waste that much time to not have it
+    case UPDATE_USER:
+      return state;
+    case UPDATE_USER_SUCCESS:
+      return { ...state, loggedInUser: action.data };
+    case UPDATE_USER_FAILURE:
+      return state;
+    // always need to return somehtign
     default:
       return state;
   }
