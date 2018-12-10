@@ -5,6 +5,9 @@ import {
   GET_USER,
   GET_USER_FAILURE,
   GET_USER_SUCCESS,
+  GET_MESSAGES,
+  GET_MESSAGES_FAILURE,
+  GET_MESSAGES_SUCCESS,
   LOGIN,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
@@ -36,6 +39,7 @@ const initialState = {
   // }
   login: {},
   loginResult: "",
+  messages: [],
   // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
   register: {},
   registerResult: "", // result is string, so default that
@@ -98,6 +102,15 @@ const kwitterReducer = (state = initialState, action) => {
       };
     case GET_USER_FAILURE:
       return state;
+    case GET_MESSAGES:
+      return state;
+    case GET_MESSAGES_FAILURE:
+      return state;
+    case GET_MESSAGES_SUCCESS:
+      return {
+        ...state,
+        messages: action.payload.messages
+      }
     case LOGOUT:
       return state;
     case LOGOUT_SUCCESS:

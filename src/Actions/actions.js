@@ -15,43 +15,50 @@ export const REGISTER = "REGISTER";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const GET_MESSAGES = "GET_MESSAGES";
+export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
+export const GET_MESSAGES_FAILURE = "GET_MESSAGES_FAILURE";
 export const ADD_MESS = "ADD_TEXT";
 
+const kwitterURL = "https://kwitter-api.herokuapp.com";
 
 export const addMess = ({ message, token }) => dispatch => {
-    fetch('https://kwitter-api.herokuapp.com', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            'charset': "utf-8"
-        },
-        data: {'text' : message }
-    }).then(() => {
-        dispatch(getMessages());
-    }).catch(err => console.log(err));
+  fetch(`${kwitterURL}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      charset: "utf-8"
+    },
+    data: { text: message }
+  })
+    .then(() => {
+      dispatch(getMessages());
+    })
+    .catch(err => console.log(err));
 };
 
 export function getMessages() {
-    return function(dispatch) {
-        fetch
-        .get('https://kwitter-api.herokuapp.com')
-        .then(res => {
-            if (res.statusText === "OK") {
-                dispatch({
-                    type: GET_MESSAGES,
-                    payload: {
-                        messages: res.data.messages
-                    }
-                });
-            }
-        })
-        .catch(err => {
-            console.log(err);
+  return function(dispatch) {
+    dispatch({ type: GET_MESSAGES });
+    fetch(`${kwitterURL}/messages`)
+      .then(res => {
+        if (res.statusText === "OK") {
+          return res.json();
+        }
+      })
+      .then(data => {
+        dispatch({
+          type: GET_MESSAGES_SUCCESS,
+          payload: {
+            messages: data.messages
+          }
         });
-    };
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: GET_MESSAGES_FAILURE });
+      });
+  };
 }
-
-const kwitterURL = "https://kwitter-api.herokuapp.com";
 
 export const login = loginData => dispatch => {
   dispatch({ type: LOGIN });
