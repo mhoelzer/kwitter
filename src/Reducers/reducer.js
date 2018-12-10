@@ -1,13 +1,19 @@
 import {
+  DELETE_USER,
+  DELETE_USER_FAILURE,
+  DELETE_USER_SUCCESS,
+  GET_USER,
+  GET_USER_FAILURE,
+  GET_USER_SUCCESS,
   LOGIN,
   LOGIN_FAILURE,
   LOGIN_SUCCESS,
+  LOGOUT,
+  LOGOUT_FAILURE,
+  LOGOUT_SUCCESS,
   REGISTER,
   REGISTER_FAILURE,
-  REGISTER_SUCCESS,
-  GET_USER,
-  GET_USER_FAILURE,
-  GET_USER_SUCCESS
+  REGISTER_SUCCESS
 } from "../Actions/actions";
 
 const initialState = {
@@ -16,12 +22,6 @@ const initialState = {
     token: null,
     id: ""
   },
-  login: {},
-  loginResult: "",
-  // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
-  register: {},
-  registerResult: "", // result is string, so default that
-  userId: null,
   loggedInUser: {
     id: 0,
     username: "",
@@ -30,11 +30,30 @@ const initialState = {
     createdAt: "",
     updatedAt: "",
     messages: []
-  }
+  },
+  // logoutUser: {
+  //   succes:
+  // }
+  login: {},
+  loginResult: "",
+  // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
+  register: {},
+  registerResult: "", // result is string, so default that
+  userId: null
 };
 
 const kwitterReducer = (state = initialState, action) => {
   switch (action.type) {
+    case DELETE_USER:
+      return state;
+    case DELETE_USER_FAILURE:
+      return state;
+    case DELETE_USER_SUCCESS:
+    // do a slice and filter of based on the id or something based on all users?
+      return {
+        ...state,
+        initialState
+      }
     case LOGIN:
       return state;
     case LOGIN_FAILURE:
@@ -79,7 +98,17 @@ const kwitterReducer = (state = initialState, action) => {
       };
     case GET_USER_FAILURE:
       return state;
-    // always need to return somehtign
+    case LOGOUT:
+      return state;
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        loggedInUser: initialState.loggedInUser,
+        authentication: initialState.authentication
+      };
+    case LOGOUT_FAILURE:
+      return state;
+    // always need to return somehtign; could combine all of the cases with just the return state, but it doesnt waste that much time to not have it
     default:
       return state;
   }

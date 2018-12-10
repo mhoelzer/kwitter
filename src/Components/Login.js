@@ -86,7 +86,7 @@ class Login extends Component {
                     </Button>
                   </Link>
                 </Button.Group>
-                {/* <div>{this.props.result}</div> */}
+                <div>{this.props.result}</div>
               </Segment>
             </Form>
           </Grid.Column>

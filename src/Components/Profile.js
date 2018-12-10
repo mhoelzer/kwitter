@@ -8,9 +8,9 @@ import {
   Sidebar
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 
- class Sidebar1 extends Component {
+class Sidebar1 extends Component {
   state = { visible: false };
 
   handleHideClick = () => this.setState({ visible: false });
@@ -44,8 +44,8 @@ import {connect} from "react-redux"
           >
             <Menu.Item as="a">{this.props.displayName}</Menu.Item>
             <Menu.Item as="a">{this.props.about}</Menu.Item>
-            <Menu.Item as={Link} to ="/editprofile">
-            edit Profile
+            <Menu.Item as={Link} to="/editprofile">
+              edit Profile
             </Menu.Item>
           </Sidebar>
 
@@ -60,20 +60,14 @@ import {connect} from "react-redux"
     );
   }
 }
-const mapStateToProps = (state) => {
-  return{
+
+const mapStateToProps = state => {
+  return {
     displayName: state.loggedInUser.displayName,
     about: state.loggedInUser.about
-  }
-}
-export default connect(mapStateToProps)(Sidebar1)
-
-// class Profile extends Component {
-//     render() {
-//         return (
-//             <div>profile</div>
-//         );
-//     };
-// };
-
-// export default Profile;
+  };
+};
+export default connect(
+  mapStateToProps,
+  null
+)(Sidebar1);
