@@ -8,12 +8,14 @@ import Login from './Login';
 import EditProfile from './EditProfile'
 import Register from './Register';
 import Messages from "./Messages";
+import MessagesList from "./Messages";
 
 class App extends Component {
   render() {
     return (
       <React.Fragment>
         <NavBar />
+        <MessagesList />
         <Switch>
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/profile" component={Profile} />
