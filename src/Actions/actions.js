@@ -42,7 +42,7 @@ export function getMessages() {
     fetch(`${kwitterURL}/messages`)
       .then(res => {
         if (res.statusText === "OK") {
-          return res.json();
+          return res.json(); // htis is  async; it runs once everyhitng is out of  queue
         }
       })
       .then(data => {
