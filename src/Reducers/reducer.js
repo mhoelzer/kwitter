@@ -7,7 +7,10 @@ import {
   REGISTER_SUCCESS,
   GET_USER,
   GET_USER_FAILURE,
-  GET_USER_SUCCESS
+  GET_USER_SUCCESS,
+  UPDATE_USER,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILURE
 } from "../Actions/actions";
 
 const initialState = {
@@ -73,12 +76,18 @@ const kwitterReducer = (state = initialState, action) => {
     case GET_USER:
       return state;
     case GET_USER_SUCCESS:
-    return{
+      return {
         ...state,
-        loggedInUser: action.data,
-    }
+        loggedInUser: action.data
+      };
     case GET_USER_FAILURE:
-        return state;
+      return state;
+    case UPDATE_USER:
+      return state;
+    case UPDATE_USER_SUCCESS:
+      return { ...state, loggedInUser: action.data };
+    case UPDATE_USER_FAILURE:
+      return state;
     // always need to return somehtign
     default:
       return state;

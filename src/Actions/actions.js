@@ -10,6 +10,9 @@ export const ADD_MESS = "ADD_TEXT";
 export const GET_USER ="GET_USER"
 export const GET_USER_SUCCESS ="GET_USER_SUCCESS"
 export const GET_USER_FAILURE ="GET_USER_FAILURE"
+export const UPDATE_USER ="UPDATE_USER"
+export const UPDATE_USER_SUCCESS ="UPDATE_USER_SUCCESS"
+export const UPDATE_USER_FAILURE ="UPDATE_USER_FAILURE"
 
 
 export const routeForRegister = {
@@ -138,4 +141,30 @@ export const register = (registerData, history) => dispatch => {
                 result: `Failed to register.` // get api err; usually user facing err; get the errors.message and display that username isnt unique
             })
         })
+}
+export const updateUser=userData => dispatch => {
+    dispatch({type: UPDATE_USER});
+    fetch("https://kwitter-api.herokuapp.com/users", {
+        method: "PATCH",
+        headers: {
+            // "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response =>{
+        if(!response.ok) {
+            response.json().then(err => {
+                throw err;
+            });
+        }
+        return response.json();
+    })
+    .then(data =>{
+        dispatch({type: UPDATE_USER_SUCCESS, data: data.user})
+        dispatch(push("/profile"))
+    })
+    .catch(err => {
+        dispatch({type: UPDATE_USER_FAILURE, err})
+    })
 }
