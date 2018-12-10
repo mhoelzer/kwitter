@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Logout from "./Logout";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import DeleteUser from "./DeleteUser"
 
 export default class Navbar extends Component {
   state = { activeItem: "profile" };
@@ -29,6 +30,7 @@ export default class Navbar extends Component {
           exact
           to="/profile"
         />
+        <DeleteUser/>
         <Logout />
       </Menu>
     );

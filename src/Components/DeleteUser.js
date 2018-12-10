@@ -13,7 +13,7 @@ class DeleteUser extends Component {
   };
   render() {
     return (
-        <Button onClick={this.handleDeleteUser}>DeleteUser</Button>
+        <Button onClick={this.handleDeleteUser}>Delete User</Button>
     )
   }
 }
