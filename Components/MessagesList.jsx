@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Messages } from "./Messages";
 import { getMessages } from "../Actions/actions";
-import Message from "./Message";
 import { Container } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
