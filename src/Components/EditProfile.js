@@ -30,9 +30,9 @@ const mapDispatchToProps = (dispatch) => {
         updateUser: (userData) => dispatch(updateUser(userData))
     }
 }
-//  const mapStateToProps = (state) => {
-//      return{
-//         token: state.authentication.token
-//      }
-//  }
-export default connect(null, mapDispatchToProps)(EditProfile);
+ const mapStateToProps = (state) => {
+     return{
+        token: state.authentication.token
+     }
+ }
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

@@ -235,12 +235,19 @@ export const deleteUser = token => dispatch => {
       dispatch({ type: DELETE_USER_FAILURE, err });
     });
 };
-export const updateUser=userData => dispatch => {
+export const updateUser=userData => (dispatch, getState) => {
+  const token = getState().authentication.token
+  if (userData.displayName === ""){
+    delete userData.displayName
+  }
+  if (userData.password === ""){
+    delete userData.password
+  }
   dispatch({type: UPDATE_USER});
   fetch("https://kwitter-api.herokuapp.com/users", {
       method: "PATCH",
       headers: {
-       //   "Authorization": `Bearer ${token}`,
+         "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
