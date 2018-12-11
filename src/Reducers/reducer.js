@@ -135,6 +135,7 @@ const kwitterReducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}; 
 
 export default kwitterReducer;
+ 

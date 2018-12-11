@@ -103,7 +103,7 @@ export const login = loginData => dispatch => {
           "Failed to login. Please enter a valid username and/or password."
       });
     });
-};
+}; 
 
 export const getUserInfo = userId => dispatch => {
   dispatch({ type: GET_USER });
