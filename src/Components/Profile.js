@@ -5,7 +5,8 @@ import {
   Image,
   Menu,
   Segment,
-  Sidebar
+  Sidebar,
+  Divider, 
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -61,6 +62,14 @@ class Sidebar1 extends Component {
   }
 }
 
+
+const profilePicture = () => (
+  <div>
+    <Image size='tiny' verticalAlign='top' /> <span>Top Aligned</span>
+    <Divider />
+  </div>
+)
+
 const mapStateToProps = state => {
   return {
     displayName: state.loggedInUser.displayName,
@@ -69,5 +78,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  null
+  profilePicture
 )(Sidebar1);

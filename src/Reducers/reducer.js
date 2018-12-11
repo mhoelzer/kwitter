@@ -137,12 +137,13 @@ const kwitterReducer = (state = initialState, action) => {
       return state;
     case UPDATE_USER_SUCCESS:
       return { ...state, loggedInUser: action.data };
-    case UPDATE_USER_FAILURE:
+    case UPDATE_USER_FAILURE: 
       return state;
     // always need to return somehtign
     default:
       return state;
   }
-};
+}; 
 
 export default kwitterReducer;
+ 
