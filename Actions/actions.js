@@ -18,96 +18,10 @@ export const GET_MESSAGES = "GET_MESSAGES";
 export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
 export const GET_MESSAGES_FAILURE = "GET_MESSAGES_FAILURE";
 export const ADD_MESS = "ADD_TEXT";
-export const UPDATE_USER = "UPDATE_USER";
-export const UPDATE_USER_SUCCESS = "UPDATE_USER_SUCCESS";
-export const UPDATE_USER_FAILURE = "UPDATE_USER_FAILURE";
-export const REMOVE_LIKE = "REMOVE_LIKE";
-export const REMOVE_LIKE_SUCCESS = "REMOVE_LIKE_SUCCESS";
-export const ADD_LIKE = "ADD_LIKE";
-export const ADD_LIKE_SUCCESS = "ADD_LIKE_SUCCESS";
-export const UPDATE_MESSAGE_BY_ID_SUCCESS = "UPDATE_MESSAGE_BY_ID_SUCCESS";
-export const UPDATE_MESSAGE_BY_ID_FAIL = "UPDATE_MESSAGE_BY_ID_FAIL";
-export const GET_MESSAGE_BY_ID = "GET_MESSAGE_BY_ID";
-export const GET_MESSAGE_BY_ID_SUCCESS = "GET_MESSAGE_BY_ID_SUCCESS";
+export const UPDATE_USER ="UPDATE_USER"
+export const UPDATE_USER_SUCCESS ="UPDATE_USER_SUCCESS"
+export const UPDATE_USER_FAILURE ="UPDATE_USER_FAILURE"
 const kwitterURL = "https://kwitter-api.herokuapp.com";
-
-export const removeLike = likeId => (dispatch, getState) => {
-  const token = getState().authentication.token;
-  dispatch({ type: REMOVE_LIKE });
-  return fetch(`${kwitterURL}/likes/${likeId}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: "Bearer " + token
-    }
-  })
-    .then(res => res.json())
-    .then(data => {
-      dispatch({
-        type: REMOVE_LIKE_SUCCESS
-      });
-    });
-};
-
-export const addLike = messageId => (dispatch, getState) => {
-  const token = getState().authentication.token;
-  dispatch({ type: ADD_LIKE });
-  return fetch(`${kwitterURL}/likes`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token
-    },
-    body: JSON.stringify({ messageId })
-  })
-    .then(res => res.json())
-    .then(data => {
-      dispatch({ type: ADD_LIKE_SUCCESS });
-    });
-};
-export const getMessageById = messageId => dispatch => {
-  dispatch({ type: GET_MESSAGE_BY_ID });
-  return fetch(`${kwitterURL}/messages/${messageId}`)
-    .then(res => res.json())
-    .then(data => {
-      dispatch({ type: GET_MESSAGE_BY_ID_SUCCESS });
-      return data.message;
-    });
-};
-export const updateMessageById = messageId => (dispatch, getState) => {
-  dispatch(getMessageById(messageId)).then(message => {
-    const messages = getState().messages;
-    const messageIndex = messages.findIndex(
-      message => message.id === messageId
-    );
-    if (~messageIndex) {
-      dispatch({
-        type: UPDATE_MESSAGE_BY_ID_SUCCESS,
-        id: messageId,
-        index: messageIndex,
-        message
-      });
-    } else {
-      dispatch({ type: UPDATE_MESSAGE_BY_ID_FAIL, id: messageId });
-    }
-  });
-};
-
-export const toggleLike = messageId => (dispatch, getState) => {
-  const message = getState().messages.find(message => message.id === messageId);
-  const userId = getState().loggedInUser.id;
-
-  const like = message.likes.find(like => like.userId === userId);
-
-  if (like) {
-    dispatch(removeLike(like.id)).then(() => {
-      dispatch(updateMessageById(messageId));
-    });
-  } else {
-    dispatch(addLike(messageId)).then(() => {
-      dispatch(updateMessageById(messageId));
-    });
-  }
-};
 
 export const addMess = ({ message, token }) => dispatch => {
   fetch(`${kwitterURL}/messages`, {
@@ -130,7 +44,7 @@ export function getMessages() {
     fetch(`${kwitterURL}/messages`)
       .then(res => {
         if (res.statusText === "OK") {
-          return res.json(); // htis is  async; it runs once everyhitng is out of  queue
+          return res.json();
         }
       })
       .then(data => {
@@ -189,7 +103,7 @@ export const login = loginData => dispatch => {
           "Failed to login. Please enter a valid username and/or password."
       });
     });
-}; 
+};
 
 export const getUserInfo = userId => dispatch => {
   dispatch({ type: GET_USER });
@@ -321,19 +235,12 @@ export const deleteUser = token => dispatch => {
       dispatch({ type: DELETE_USER_FAILURE, err });
     });
 };
-export const updateUser=userData => (dispatch, getState) => {
-  const token = getState().authentication.token
-  if (userData.displayName === ""){
-    delete userData.displayName
-  }
-  if (userData.password === ""){
-    delete userData.password
-  }
+export const updateUser=userData => dispatch => {
   dispatch({type: UPDATE_USER});
   fetch("https://kwitter-api.herokuapp.com/users", {
       method: "PATCH",
       headers: {
-         "Authorization": `Bearer ${token}`,
+       //   "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json"
       },
       body: JSON.stringify(userData)
@@ -353,4 +260,4 @@ export const updateUser=userData => (dispatch, getState) => {
   .catch(err => {
       dispatch({type: UPDATE_USER_FAILURE, err})
   })
-} 
+}
