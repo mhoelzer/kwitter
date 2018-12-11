@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { getMessages } from "../Actions/actions";
-import {connect} from "react-redux";
+import { getMessages, toggleLike } from "../Actions/actions";
+import { connect } from "react-redux";
 import Message from "./Message";
 
 const form = {
@@ -21,7 +21,14 @@ class MessagesList extends Component {
       <Fragment>
         <h2>Messaging Feed</h2>
         {this.props.messages.map(message => (
-          <Message key={message.id} text={message.text} username={message.username}/>
+          <Message
+            key={message.id}
+            text={message.text}
+            username={message.username}
+            toggleLike={() => this.props.toggleLike(message.id)}
+            numOfLikes={message.likes.length}
+            isLiked={message.isLiked}
+          />
         ))}
       </Fragment>
     );
@@ -29,14 +36,32 @@ class MessagesList extends Component {
 }
 
 const mapStateToProps = state => {
-  return { messages: state.messages };
+  return {
+    messages: state.messages.map(message => {
+      const like = message.likes.find(
+        like => like.userId === state.authentication.id
+      );
+      if (like) {
+        return {
+          ...message,
+          isLiked: true
+        };
+      } else {
+        return {
+          ...message,
+          isLiked: false
+        };
+      }
+    })
+  };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getMessages: () => {
       dispatch(getMessages());
-    }
+    },
+    toggleLike: messageId => dispatch(toggleLike(messageId))
   };
 };
 
