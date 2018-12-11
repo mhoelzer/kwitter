@@ -10,7 +10,7 @@ class EditProfile extends Component {
   handleSubmit = (e, { value }) => {this.props.updateUser({...this.state})}
 
   render() {
-
+ 
     return (
       <Form>
         <Form.Group widths='equal'>

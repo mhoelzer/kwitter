@@ -267,4 +267,4 @@ export const updateUser=userData => (dispatch, getState) => {
   .catch(err => {
       dispatch({type: UPDATE_USER_FAILURE, err})
   })
-}
+} 
