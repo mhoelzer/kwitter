@@ -18,7 +18,9 @@ export const GET_MESSAGES = "GET_MESSAGES";
 export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
 export const GET_MESSAGES_FAILURE = "GET_MESSAGES_FAILURE";
 export const ADD_MESS = "ADD_TEXT";
-
+export const UPDATE_USER ="UPDATE_USER"
+export const UPDATE_USER_SUCCESS ="UPDATE_USER_SUCCESS"
+export const UPDATE_USER_FAILURE ="UPDATE_USER_FAILURE"
 const kwitterURL = "https://kwitter-api.herokuapp.com";
 
 export const addMess = ({ message, token }) => dispatch => {
@@ -233,3 +235,36 @@ export const deleteUser = token => dispatch => {
       dispatch({ type: DELETE_USER_FAILURE, err });
     });
 };
+export const updateUser=userData => (dispatch, getState) => {
+  const token = getState().authentication.token
+  if (userData.displayName === ""){
+    delete userData.displayName
+  }
+  if (userData.password === ""){
+    delete userData.password
+  }
+  dispatch({type: UPDATE_USER});
+  fetch("https://kwitter-api.herokuapp.com/users", {
+      method: "PATCH",
+      headers: {
+         "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userData)
+  })
+  .then(response =>{
+      if(!response.ok) {
+          response.json().then(err => {
+              throw err;
+          });
+      }
+      return response.json();
+  })
+  .then(data =>{
+      dispatch({type: UPDATE_USER_SUCCESS, data: data.user})
+      dispatch(push("/profile"))
+  })
+  .catch(err => {
+      dispatch({type: UPDATE_USER_FAILURE, err})
+  })
+}
