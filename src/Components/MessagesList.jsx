@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Messages } from "./Message.jsx";
-import { getMessages } from "../Actions/actions";
+import { findUsers, findSingleUser, getMessages } from "../Actions/actions";
 import { Container } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
@@ -25,7 +25,11 @@ class MessagesList extends Component {
 
   likeId = (likes) => {
     let like = likes.filter(like => like.userId === this.props.userID)
-      if ()
+      if (like.length > 0) {
+        return like[0].id
+      } else {
+        return null
+      }
   }
 
   formatKweetDate = date => {
@@ -98,19 +102,26 @@ class MessagesList extends Component {
   }
 }
 
-const mapStateToProps = ({ userID messages }) => ({
-  messages
+const mapStateToProps = ({ userID,  messages }) => ({
+  messages,
+  userID
 });
 
 const mapDispatchToProps = dispatch => {
   return {
+    findUsers: ( limit, offset) => {
+      dispatch(findUsers( limit, offset))
+    },
+    findSingleUser: ( userID ) => {
+      dispatch(findSingleUser(userID))
+    },
     getMessages: () => {
       dispatch(getMessages());
     }
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MessagesList);
+)(MessagesList)
