@@ -75,8 +75,6 @@ class MessagesList extends Component {
             <Route path="/profile" />
           </Switch>
         </Container>
-      </div>
-      <Fragment>
         <h2>Messaging Feed</h2>
         {this.props.messages.map(message => (
           <Message
@@ -88,7 +86,7 @@ class MessagesList extends Component {
             isLiked={message.isLiked}
           />
         ))}
-      </Fragment>
+      </div>
     );
   }
 }
