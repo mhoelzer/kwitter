@@ -14,6 +14,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const REGISTER = "REGISTER";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const LIKE_MESSAGE = "LIKE_MESSAGE";
 export const GET_MESSAGES = "GET_MESSAGES";
 export const GET_MESSAGES_SUCCESS = "GET_MESSAGES_SUCCESS";
 export const GET_MESSAGES_FAILURE = "GET_MESSAGES_FAILURE";
@@ -108,6 +109,32 @@ export const toggleLike = messageId => (dispatch, getState) => {
     });
   }
 };
+export const likedMessageSuccess = (likeObj) => {
+  return {
+    type: LIKE_MESSAGE,
+    payload: likeObj
+  }
+}
+
+export const likeMessage = (userId,messageId,token) => dispatch => {
+  const header = {
+    method: "POST",
+    headers: {
+      "Content-Type":"application/json",
+      "Authorization":'Bearer ${token}'
+    },
+    body: JSON.stringify({
+      "userId": userId,
+      "messageId": messageId
+    })
+  }
+  return fetch('${kwitterURL}/messages', header)
+  .then(response => response.json())
+  .then(likeObj => {
+    dispatch(likedMessageSuccess(likeObj))
+    return likeObj.like.id
+  })
+}
 
 export const addMess = ({ message, token }) => dispatch => {
   fetch(`${kwitterURL}/messages`, {
