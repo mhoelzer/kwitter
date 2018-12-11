@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <MessagesList />
+        {/* <MessagesList /> */}
         <Switch>
           <Route exact path="/feed" component={Feed} />
           <Route exact path="/profile" component={Profile} />
