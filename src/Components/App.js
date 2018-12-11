@@ -8,7 +8,7 @@ import Login from './Login';
 import EditProfile from './EditProfile'
 import Register from './Register';
 import Message from "./Message";
-import MessagesList from "./Message";
+import MessagesList from "./MessagesList";
 
 class App extends Component {
   render() {
