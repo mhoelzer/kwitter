@@ -1,50 +1,50 @@
-// import React, { Component, Fragment } from 'react';
-// import { connect } from 'react-redux'
-// import { Switch, Route } from 'react-router-dom'
-// import { Icon, Divider, Container, Card, Grid, GridColumn} from 'semantic-ui-react'
-// import { likeMessage } from "../Actions/actions"
-// class Message extends Component {
-//   state = {
-//       isLiked: this.props.isLiked,
-//       totalLikes: this.props.totalLikes,
-//       likeId: this.props.likeId,
-//   }
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux'
+import { Switch, Route } from 'react-router-dom'
+import { Icon, Divider, Container, Card, Grid, GridColumn} from 'semantic-ui-react'
+import { likeMessage } from "../Actions/actions"
+class Message extends Component {
+  state = {
+      isLiked: this.props.isLiked,
+      totalLikes: this.props.totalLikes,
+      likeId: this.props.likeId,
+  }
 
-//   handleLikeMessage = () => {
-//       this.props.likeMessage(this.props.userId, this.props.messageId, this.props.auth.token)
-//       .then(like => {
-//           return this.setState({isLiked: true, totalLikes: this.state.totalLikes + 1, likeId: like})
-//       })
-//   }
+  handleLikeMessage = () => {
+      this.props.likeMessage(this.props.userId, this.props.messageId, this.props.auth.token)
+      .then(like => {
+          return this.setState({isLiked: true, totalLikes: this.state.totalLikes + 1, likeId: like})
+      })
+  }
 
-//   likeMessage = () => {
-//       return (
-//           <GridColumn
-//           style={{
-//               color: "rgb(45,45,45",
-//           }}>
+  likeMessage = () => {
+      return (
+          <GridColumn
+          style={{
+              color: "rgb(45,45,45",
+          }}>
           
-//           </GridColumn>
-//       )
-//   }
-//     render() {
-//         return (
-//            <div></div>
-//         );
-//     };
-// };
+          </GridColumn>
+      )
+  }
+    render() {
+        return (
+           <div></div>
+        );
+    };
+};
 
-// const mapStatetoProps = ({auth, messages}) => ({
-//     auth,
-//     messages
-// });
+const mapStatetoProps = ({auth, messages}) => ({
+    auth,
+    messages
+});
 
-// const mapDispatchtoProps = (dispatch) => {
-//     return {
-//         likeMessage: (userId, messageId, token) => {
-//             return dispatch(likeMessage(userId, messageId, token))
-//         }
-//     }
-// }
+const mapDispatchtoProps = (dispatch) => {
+    return {
+        likeMessage: (userId, messageId, token) => {
+            return dispatch(likeMessage(userId, messageId, token))
+        }
+    }
+}
 
-// export default connect ( mapStatetoProps, mapDispatchtoProps)(Message)
+export default connect ( mapStatetoProps, mapDispatchtoProps)(Message)
