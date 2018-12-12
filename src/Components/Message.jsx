@@ -128,3 +128,4 @@ export default connect(
   mapStatetoProps,
   mapDispatchtoProps
 )(Message);
+
