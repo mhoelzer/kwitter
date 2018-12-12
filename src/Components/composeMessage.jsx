@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Switch, Route } from "react-router-dom";
 import { compose } from "../../../../Library/Caches/typescript/3.0/node_modules/redux";
 import { ReactComponent } from "*.svg";
-import { fetchMessages } from "../Actions/actions";
+import { fetchMessages, findSingleUser, postMessageProfile, composeMessageFeed } from "../Actions/actions";
 
 class NewKweet extends React.Component {
   state = {
