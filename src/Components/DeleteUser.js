@@ -2,10 +2,9 @@
 import React, { Component } from "react";
 import { deleteUser } from "../Actions/actions";
 import { connect } from "react-redux";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 // import DeleteUser from "./DeleteUser"
 // <DeleteUser/>
-
 
 class DeleteUser extends Component {
   handleDeleteUser = event => {
@@ -13,19 +12,22 @@ class DeleteUser extends Component {
   };
   render() {
     return (
-        <Button onClick={this.handleDeleteUser}>Delete User</Button>
-    )
+      <Button onClick={this.handleDeleteUser}>
+        <Icon name="trash alternate outline" />
+        Delete User
+      </Button>
+    );
   }
 }
 
 const mapStateToProps = state => {
-    return {
-        token: state.authentication.token
-    }
-}
+  return {
+    token: state.authentication.token
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
-    deleteUser: (token) => dispatch(deleteUser(token))
+    deleteUser: token => dispatch(deleteUser(token))
   };
 };
 export default connect(

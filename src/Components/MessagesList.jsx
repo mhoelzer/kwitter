@@ -1,14 +1,35 @@
-
 import React, { Component, Fragment } from "react";
-import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
-import Message from "./Message";
+import { Messages } from "./Message.jsx";
+import { findUsers, findSingleUser, getMessages } from "../Actions/actions";
 import { Container } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
 class MessagesList extends Component {
   componentDidMount() {
+    this.props.findUsers();
+    this.props.findSingleUser(this.props.userID);
     this.props.getMessages();
+  }
+
+
+  matchUsernameId = (userId) => {
+    let name = this.props.users.filter(user => user.id === userId)
+      if (name[0]) return name[0].username
+        return 'Not Found'
+  }
+
+  likedUserMessage = (likes) => {
+    return likes.some(like => like.userId === this.props.userId)
+  }
+
+  likeId = (likes) => {
+    let like = likes.filter(like => like.userId === this.props.userID)
+      if (like.length > 0) {
+        return like[0].id
+      } else {
+        return null
+      }
   }
 
   formatKweetDate = date => {
@@ -76,53 +97,31 @@ class MessagesList extends Component {
             <Route path="/profile" />
           </Switch>
         </Container>
-        <h2>Messaging Feed</h2>
-        {this.props.messages.map(message => (
-          <Message
-            key={message.id}
-            text={message.text}
-            username={message.username}
-            toggleLike={() => this.props.toggleLike(message.id)}
-            numOfLikes={message.likes.length}
-            isLiked={message.isLiked}
-          />
-        ))}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    messages: state.messages.map(message => {
-      const like = message.likes.find(
-        like => like.userId === state.authentication.id
-      );
-      if (like) {
-        return {
-          ...message,
-          isLiked: true
-        };
-      } else {
-        return {
-          ...message,
-          isLiked: false
-        };
-      }
-    })
-  };
-};
+const mapStateToProps = ({ userID,  messages }) => ({
+  messages,
+  userID
+});
 
 const mapDispatchToProps = dispatch => {
   return {
+    findUsers: ( limit, offset) => {
+      dispatch(findUsers( limit, offset))
+    },
+    findSingleUser: ( userID ) => {
+      dispatch(findSingleUser(userID))
+    },
     getMessages: () => {
       dispatch(getMessages());
-    },
-    toggleLike: messageId => dispatch(toggleLike(messageId))
-  };
-};
+    }
+  }
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MessagesList);
+)(MessagesList)

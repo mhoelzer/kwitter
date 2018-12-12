@@ -19,7 +19,8 @@ import {
   REGISTER_SUCCESS,
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE
+  UPDATE_USER_FAILURE,
+  UPDATE_MESSAGE_BY_ID_SUCCESS
 } from "../Actions/actions";
 
 const initialState = {
@@ -51,6 +52,13 @@ const initialState = {
 
 const kwitterReducer = (state = initialState, action) => {
   switch (action.type) {
+    case UPDATE_MESSAGE_BY_ID_SUCCESS:
+      const newMessages = state.messages.slice();
+      newMessages.splice(action.index, 1, action.message);
+      return {
+        ...state,
+        messages: newMessages
+      };
     case DELETE_USER:
       return state;
     case DELETE_USER_FAILURE:
@@ -129,12 +137,12 @@ const kwitterReducer = (state = initialState, action) => {
       return state;
     case UPDATE_USER_SUCCESS:
       return { ...state, loggedInUser: action.data };
-    case UPDATE_USER_FAILURE:
+    case UPDATE_USER_FAILURE: 
       return state;
     // always need to return somehtign
     default:
       return state;
   }
-};
+}; 
 
 export default kwitterReducer;
