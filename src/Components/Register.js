@@ -52,68 +52,66 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="registerForm">
-        <Grid
-          textAlign="center"
-          style={{ height: "100%" }}
-          verticalAlign="middle"
-        >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h1" color="black" textAlign="center">
-              Welcome to Kwitter!
-            </Header>
-            <Image src={logo} size="small" centered />
-            <Header as="h2" color="grey" textAlign="center">
-              Register a New Account
-            </Header>
-            <Form size="large">
-              <Segment stacked>
-                <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
-                {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
-                {/* required means it has to have something in it */}
-                {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
-                <Form.Field
-                  label="Username:"
-                  required
-                  placeholder="Username"
-                  type="text"
-                  control={Input}
-                  autoFocus
-                  onChange={this.handleUsernameChange}
-                />
-                <Form.Field
-                  label="Display Name:"
-                  required
-                  placeholder="Display Name"
-                  type="text"
-                  control={Input}
-                  onChange={this.handleDisplayNameChange}
-                />
-                <Form.Field
-                  label="Password:"
-                  required
-                  placeholder="Password"
-                  type="password"
-                  control={Input}
-                  onChange={this.handlePasswordChange}
-                />
-                <Button.Group>
-                  <Button positive size="large" onClick={this.handleRegister}>
-                    Create Your New Account!
+      <Grid
+        textAlign="center"
+        style={{ height: "100%" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h1" color="black" textAlign="center">
+            Welcome to Kwitter!
+          </Header>
+          <Image src={logo} size="small" centered />
+          <Header as="h2" color="grey" textAlign="center">
+            Register a New Account
+          </Header>
+          <Form size="large">
+            <Segment stacked color="grey">
+              <Form.Field label="ALL FIELDS MUST HAVE 3-20 CHARACTERS" />
+              {/* make sure to add the onchanges otherwise value wont work; record value whenever changes nad display vlaue when rerenders */}
+              {/* required means it has to have something in it */}
+              {/* value is making things customized/changing thinhs in state; without, dom controls how value is displayed */}
+              <Form.Field
+                label="Username:"
+                required
+                placeholder="Username"
+                type="text"
+                control={Input}
+                autoFocus
+                onChange={this.handleUsernameChange}
+              />
+              <Form.Field
+                label="Display Name:"
+                required
+                placeholder="Display Name"
+                type="text"
+                control={Input}
+                onChange={this.handleDisplayNameChange}
+              />
+              <Form.Field
+                label="Password:"
+                required
+                placeholder="Password"
+                type="password"
+                control={Input}
+                onChange={this.handlePasswordChange}
+              />
+              <Button.Group>
+                <Button positive size="large" onClick={this.handleRegister}>
+                  Create Your New Account!
+                </Button>
+                <Button.Or />
+                <Link to="/">
+                  <Button size="large" color="brown">
+                    Already Have an Account? Login Here!
                   </Button>
-                  <Button.Or />
-                  <Link to="/">
-                    <Button size="large" color="brown">
-                      Already Have an Account? Login Here!
-                    </Button>
-                  </Link>
-                </Button.Group>
-                <div>{this.props.result}</div>
-              </Segment>
-            </Form>
-          </Grid.Column>
-        </Grid>
-      </div>
+                </Link>
+              </Button.Group>
+              <div>{this.props.result}</div>
+            </Segment>
+          </Form>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
