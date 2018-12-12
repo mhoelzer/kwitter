@@ -6,7 +6,7 @@ import Message from "./Message";
 import { Container } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
-class MessagesList extends Component {
+export class MessagesList extends Component {
   componentDidMount() {
     this.props.getMessages();
   }

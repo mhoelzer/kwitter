@@ -14,6 +14,7 @@ import logo from "../logo.png";
 import { connect } from "react-redux";
 import MessageList from "./MessagesList";
 import ComposeMessage from "./ComposeMessage";
+import UserMessages from "./UserMessages";
 
 class Sidebar1 extends Component {
   render() {
@@ -61,6 +62,7 @@ class Sidebar1 extends Component {
             <Segment basic>
               <Header as="h3">My Messages</Header>
               <ComposeMessage />
+              <UserMessages />
               {/* <MessageList />  */}{" "}
               {/* this will be for personal and making messages */}
               <div>creasting your messages should go here</div>
