@@ -126,3 +126,18 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(MessagesList);
+
+// possible logic to add from jsx file, this would allow us to filter users and return their messages.
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     findUsers: (limit, offset) => {
+//       dispatch(findUsers(limit, offset));
+//     },
+//     findSingleUser: userID => {
+//       dispatch(findSingleUser(userID));
+//     },
+//     getMessages: () => {
+//       dispatch(getMessages());
+//     }
+//   };
+// };
