@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Message } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import { updateUser } from "../Actions/actions.js";
 
@@ -17,7 +17,8 @@ class EditProfile extends Component {
           <Form.Input onChange={this.handleChange} name="displayName" fluid label='display name' placeholder='display name' />
           <Form.Input onChange={this.handleChange} name="password" fluid label='password' placeholder='password' />
           <Form.TextArea onChange={this.handleChange} name="about" label='About' placeholder='Tell us more about you...' />
-          <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
+          <Form.Button color='blue' onClick={this.handleSubmit}>Confirm Changes</Form.Button>
+          <Message success header='Edits complete' content='Your edits have been succefully saved'></Message>
         </Form.Group>
 
       </Form>
