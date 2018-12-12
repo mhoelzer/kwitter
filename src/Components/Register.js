@@ -59,8 +59,11 @@ class Register extends Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h1" color="black" textAlign="center">
+              Welcome to Kwitter!
+            </Header>
             <Image src={logo} size="small" centered />
-            <Header as="h1" color="yellow" textAlign="center">
+            <Header as="h2" color="grey" textAlign="center">
               Register a New Account
             </Header>
             <Form size="large">

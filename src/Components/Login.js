@@ -45,8 +45,11 @@ class Login extends Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h1" color="black" textAlign="center">
+              Welcome to Kwitter!
+            </Header>
             <Image src={logo} size="medium" centered />
-            <Header as="h1" color="yellow" textAlign="center">
+            <Header as="h2" color="grey" textAlign="center">
               Login
             </Header>
             <Form size="large">
