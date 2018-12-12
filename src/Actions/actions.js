@@ -30,7 +30,30 @@ export const UPDATE_MESSAGE_BY_ID_SUCCESS = "UPDATE_MESSAGE_BY_ID_SUCCESS";
 export const UPDATE_MESSAGE_BY_ID_FAIL = "UPDATE_MESSAGE_BY_ID_FAIL";
 export const GET_MESSAGE_BY_ID = "GET_MESSAGE_BY_ID";
 export const GET_MESSAGE_BY_ID_SUCCESS = "GET_MESSAGE_BY_ID_SUCCESS";
+export const CREATE_MESSAGE = "CREATE_MESSAGE";
+export const CREATE_MESSAGE_SUCCESS = "CREATE_MESSAGE_SUCCESS";
 const kwitterURL = "https://kwitter-api.herokuapp.com";
+
+export const composeMessage = text => (dispatch, getState) => {
+  const token = getState().authentication.token;
+  dispatch({ type: CREATE_MESSAGE });
+  return fetch(`${kwitterURL}/messages`, {
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ text })
+  })
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: CREATE_MESSAGE_SUCCESS
+      });
+      const userId = getState().authentication.id;
+      dispatch(getUserInfo(userId))
+    });
+};
 
 export const removeLike = likeId => (dispatch, getState) => {
   const token = getState().authentication.token;
@@ -109,32 +132,32 @@ export const toggleLike = messageId => (dispatch, getState) => {
     });
   }
 };
-export const likedMessageSuccess = (likeObj) => {
+export const likedMessageSuccess = likeObj => {
   return {
     type: LIKE_MESSAGE,
     payload: likeObj
-  }
-}
+  };
+};
 
-export const likeMessage = (userId,messageId,token) => dispatch => {
+export const likeMessage = (userId, messageId, token) => dispatch => {
   const header = {
     method: "POST",
     headers: {
-      "Content-Type":"application/json",
-      "Authorization":'Bearer ${token}'
+      "Content-Type": "application/json",
+      Authorization: "Bearer ${token}"
     },
     body: JSON.stringify({
-      "userId": userId,
-      "messageId": messageId
+      userId: userId,
+      messageId: messageId
     })
-  }
-  return fetch('${kwitterURL}/messages', header)
-  .then(response => response.json())
-  .then(likeObj => {
-    dispatch(likedMessageSuccess(likeObj))
-    return likeObj.like.id
-  })
-}
+  };
+  return fetch("${kwitterURL}/messages", header)
+    .then(response => response.json())
+    .then(likeObj => {
+      dispatch(likedMessageSuccess(likeObj));
+      return likeObj.like.id;
+    });
+};
 
 export const addMess = ({ message, token }) => dispatch => {
   fetch(`${kwitterURL}/messages`, {
@@ -216,7 +239,7 @@ export const login = loginData => dispatch => {
           "Failed to login. Please enter a valid username and/or password."
       });
     });
-}; 
+};
 
 export const getUserInfo = userId => dispatch => {
   dispatch({ type: GET_USER });
@@ -348,36 +371,36 @@ export const deleteUser = token => dispatch => {
       dispatch({ type: DELETE_USER_FAILURE, err });
     });
 };
-export const updateUser=userData => (dispatch, getState) => {
-  const token = getState().authentication.token
-  if (userData.displayName === ""){
-    delete userData.displayName
+export const updateUser = userData => (dispatch, getState) => {
+  const token = getState().authentication.token;
+  if (userData.displayName === "") {
+    delete userData.displayName;
   }
-  if (userData.password === ""){
-    delete userData.password
+  if (userData.password === "") {
+    delete userData.password;
   }
-  dispatch({type: UPDATE_USER});
+  dispatch({ type: UPDATE_USER });
   fetch("https://kwitter-api.herokuapp.com/users", {
-      method: "PATCH",
-      headers: {
-         "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(userData)
   })
-  .then(response =>{
-      if(!response.ok) {
-          response.json().then(err => {
-              throw err;
-          });
+    .then(response => {
+      if (!response.ok) {
+        response.json().then(err => {
+          throw err;
+        });
       }
       return response.json();
-  })
-  .then(data =>{
-      dispatch({type: UPDATE_USER_SUCCESS, data: data.user})
-      dispatch(push("/profile"))
-  })
-  .catch(err => {
-      dispatch({type: UPDATE_USER_FAILURE, err})
-  })
-} 
+    })
+    .then(data => {
+      dispatch({ type: UPDATE_USER_SUCCESS, data: data.user });
+      dispatch(push("/profile"));
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_USER_FAILURE, err });
+    });
+};

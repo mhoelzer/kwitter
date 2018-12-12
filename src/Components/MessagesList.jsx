@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Messages } from "./Message.jsx";
+import { Messages } from "./Message";
 import { findUsers, findSingleUser, getMessages } from "../Actions/actions";
 import { Container } from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
@@ -12,25 +12,24 @@ class MessagesList extends Component {
     this.props.getMessages();
   }
 
+  matchUsernameId = userId => {
+    let name = this.props.users.filter(user => user.id === userId);
+    if (name[0]) return name[0].username;
+    return "Not Found";
+  };
 
-  matchUsernameId = (userId) => {
-    let name = this.props.users.filter(user => user.id === userId)
-      if (name[0]) return name[0].username
-        return 'Not Found'
-  }
+  likedUserMessage = likes => {
+    return likes.some(like => like.userId === this.props.userId);
+  };
 
-  likedUserMessage = (likes) => {
-    return likes.some(like => like.userId === this.props.userId)
-  }
-
-  likeId = (likes) => {
-    let like = likes.filter(like => like.userId === this.props.userID)
-      if (like.length > 0) {
-        return like[0].id
-      } else {
-        return null
-      }
-  }
+  likeId = likes => {
+    let like = likes.filter(like => like.userId === this.props.userID);
+    if (like.length > 0) {
+      return like[0].id;
+    } else {
+      return null;
+    }
+  };
 
   formatKweetDate = date => {
     const months = [
@@ -102,26 +101,26 @@ class MessagesList extends Component {
   }
 }
 
-const mapStateToProps = ({ userID,  messages }) => ({
+const mapStateToProps = ({ userID, messages }) => ({
   messages,
   userID
 });
-
+/*possibly transfer*/
 const mapDispatchToProps = dispatch => {
   return {
-    findUsers: ( limit, offset) => {
-      dispatch(findUsers( limit, offset))
+    findUsers: (limit, offset) => {
+      dispatch(findUsers(limit, offset));
     },
-    findSingleUser: ( userID ) => {
-      dispatch(findSingleUser(userID))
+    findSingleUser: userID => {
+      dispatch(findSingleUser(userID));
     },
     getMessages: () => {
       dispatch(getMessages());
     }
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MessagesList)
+)(MessagesList);
