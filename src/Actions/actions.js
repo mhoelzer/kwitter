@@ -51,7 +51,7 @@ export const composeMessage = text => (dispatch, getState) => {
         type: CREATE_MESSAGE_SUCCESS
       });
       const userId = getState().authentication.id;
-      dispatch(getUserInfo(userId))
+      dispatch(getUserInfo(userId));
     });
 };
 
