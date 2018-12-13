@@ -12,18 +12,14 @@ import {
 import { Link } from "react-router-dom";
 import logo from "../logo.png";
 import { connect } from "react-redux";
-import MessageList from "./MessagesList";
 import ComposeMessage from "./ComposeMessage";
 import UserMessages from "./UserMessages";
-import NavBar from "./NavBar"
-
+import { react } from "babel-types";
 
 class Sidebar1 extends Component {
   render() {
     return (
-      
-      <Grid container stackable >
-      <NavBar />
+      <Grid container stackable>
         <Grid.Row>
           <Grid.Column width={6}>
             <Card
@@ -35,7 +31,7 @@ class Sidebar1 extends Component {
               vertical
               width="thin"
               fluid
-            > 
+            >
               <Card.Content>
                 <Image src={logo} />
                 <Segment style={{ padding: "1em 0em" }} inverted color="green">
@@ -64,14 +60,9 @@ class Sidebar1 extends Component {
           </Grid.Column>
           <Grid.Column floated="right" width={10}>
             <Segment basic>
-              <Header as="h3">My Messages</Header>
+              <Header as="h1" textAlign="center">My Messages</Header>
               <ComposeMessage />
               <UserMessages />
-              {/* <MessageList />  */}{" "}
-              {/* this will be for personal and making messages */}
-              <div>creasting your messages should go here</div>
-              <div>TESTsfdsd f, INGLD</div>
-              <div>messages should go here</div>
             </Segment>
           </Grid.Column>
         </Grid.Row>
