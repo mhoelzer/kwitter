@@ -20,7 +20,10 @@ import {
   UPDATE_USER,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILURE,
-  UPDATE_MESSAGE_BY_ID_SUCCESS
+  UPDATE_MESSAGE_BY_ID_SUCCESS,
+  GET_ANY_USER,
+  GET_ANY_USER_SUCCESS,
+  GET_ANY_USER_FAILURE
 } from "../Actions/actions";
 
 const initialState = {
@@ -47,7 +50,8 @@ const initialState = {
   // if succes, it only reutnr usernme and dispalyname; result gets dumped into redux
   register: {},
   registerResult: "", // result is string, so default that
-  userId: null
+  userId: null,
+  users: {}
 };
 
 const kwitterReducer = (state = initialState, action) => {
@@ -113,6 +117,15 @@ const kwitterReducer = (state = initialState, action) => {
       };
     case GET_USER_FAILURE:
       return state;
+    case GET_ANY_USER:
+      return state;
+    case GET_ANY_USER_SUCCESS:
+      return {
+        ...state,
+        users: { ...state.users, [action.data.id]: action.data } 
+      };
+    case GET_ANY_USER_FAILURE:
+      return state;
     case GET_MESSAGES:
       return state;
     case GET_MESSAGES_FAILURE:
@@ -136,13 +149,16 @@ const kwitterReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return state;
     case UPDATE_USER_SUCCESS:
-    return { ...state, loggedInUser: {...state.loggedInUser, ...action.data} };
-    case UPDATE_USER_FAILURE: 
+      return {
+        ...state,
+        loggedInUser: { ...state.loggedInUser, ...action.data }
+      };
+    case UPDATE_USER_FAILURE:
       return state;
     // always need to return somehtign
     default:
       return state;
   }
-}; 
+};
 
 export default kwitterReducer;

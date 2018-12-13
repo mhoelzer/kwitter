@@ -22,7 +22,7 @@ class Sidebar1 extends Component {
   render() {
     return (
       
-      <Grid container stackable verticalAlign="middle">
+      <Grid container stackable >
       <NavBar />
         <Grid.Row>
           <Grid.Column width={6}>
