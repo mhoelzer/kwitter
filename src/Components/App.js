@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from "./NavBar"
 import Feed from "./Feed"
 import Profile from "./Profile"
 import { Switch, Route } from "react-router-dom";
@@ -14,7 +13,6 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavBar />
         {/* <MessagesList /> */}
         <Switch>
           <Route exact path="/feed" component={Feed} />
