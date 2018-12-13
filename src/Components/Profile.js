@@ -31,7 +31,7 @@ class Sidebar1 extends Component {
               vertical
               width="thin"
               fluid
-            >
+            > 
               <Card.Content>
                 <Image src={logo} />
                 <Segment style={{ padding: "1em 0em" }} inverted color="green">
