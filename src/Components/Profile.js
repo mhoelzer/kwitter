@@ -10,6 +10,9 @@ import {
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import MessageList from "./MessagesList";
+import ComposeMessage from "./ComposeMessage";
+import UserMessages from "./UserMessages";
 
 class Sidebar1 extends Component {
   state = { visible: false };
@@ -52,8 +55,14 @@ class Sidebar1 extends Component {
 
           <Sidebar.Pusher>
             <Segment basic>
-              <Header as="h3">Application Content</Header>
-              <Image src="https://react.semantic-ui.com/images/wireframe/paragraph.png" />
+              <Header as="h3">My Messages</Header>
+              <ComposeMessage />
+              <UserMessages />
+              {/* <MessageList />  */}{" "}
+              {/* this will be for personal and making messages */}
+              <div>creasting your messages should go here</div>
+              <div>TESTsfdsd f, INGLD</div>
+              <div>messages should go here</div>
             </Segment>
           </Sidebar.Pusher>
         </Sidebar.Pushable>
