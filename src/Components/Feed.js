@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import MessagesList from "./MessagesList";
-import NavBar from "./NavBar"
-
 
 class Feed extends Component {
   render() {
     return (
       <React.Fragment>
-          <NavBar/>
-        <div>feed</div>
+        <h1 style={{textAlign:"center"}}>Feed</h1>
         <MessagesList />
       </React.Fragment>
     );

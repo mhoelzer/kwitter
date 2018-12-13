@@ -2,7 +2,17 @@ import React, { Component, Fragment } from "react";
 import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
 import Message from "./Message";
-import { Container } from "semantic-ui-react";
+import {
+  Container,
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Header,
+  Image,
+  Menu,
+  Segment
+} from "semantic-ui-react";
 import { Switch, Route } from "react-router-dom";
 
 export class MessagesList extends Component {
@@ -58,17 +68,22 @@ export class MessagesList extends Component {
   render() {
     return (
       <React.Fragment>
-        <h2>Messaging Feed</h2>
-        {this.props.messages.map(message => (
-          <Message
-            key={message.id}
-            text={message.text}
-            username={message.username}
-            toggleLike={() => this.props.toggleLike(message.id)}
-            numOfLikes={message.likes.length}
-            isLiked={message.isLiked}
-          />
-        ))}
+        <Grid container stackable>
+          <Grid.Row>
+            <Grid.Column>
+              {this.props.messages.map(message => (
+                <Message
+                  key={message.id}
+                  text={message.text}
+                  username={message.username}
+                  toggleLike={() => this.props.toggleLike(message.id)}
+                  numOfLikes={message.likes.length}
+                  isLiked={message.isLiked}
+                />
+              ))}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </React.Fragment>
     );
   }
@@ -77,7 +92,7 @@ export class MessagesList extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages.map(message => {
-      const username = state.users[message.userId].username || "unknown"; 
+      const username = state.users[message.userId].username || "unknown";
       const like = message.likes.find(
         like => like.userId === state.authentication.id
       );

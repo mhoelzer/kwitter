@@ -36,7 +36,7 @@ class Login extends Component {
     });
   };
 
-  render() { 
+  render() {
     return (
       <Grid
         textAlign="center"
@@ -44,6 +44,7 @@ class Login extends Component {
         verticalAlign="middle"
       >
         <Grid.Column style={{ maxWidth: 450 }}>
+          <div />
           <Header as="h1" color="black" textAlign="center">
             Welcome to Kwitter!
           </Header>
