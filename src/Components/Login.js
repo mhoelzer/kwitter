@@ -36,7 +36,7 @@ class Login extends Component {
     });
   };
 
-  render() {
+  render() { 
     return (
       <Grid
         textAlign="center"
