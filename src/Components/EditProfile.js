@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Header, Icon } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import { updateUser } from "../Actions/actions.js";
+import DeleteUser from "./DeleteUser";
 
 class EditProfile extends Component {
   state = {displayName: "", password: "", about:"",}
@@ -13,11 +14,18 @@ class EditProfile extends Component {
  
     return (
       <Form>
+        <Header as='h2' color='blue' icon>
+    <Icon name='settings' />
+   Edit your profile!
+    <Header.Subheader>Change your display name, password and update all the wonderful facts about you!</Header.Subheader>
+  </Header>
+  
         <Form.Group widths='equal'>
           <Form.Input onChange={this.handleChange} name="displayName" fluid label='display name' placeholder='display name' />
           <Form.Input onChange={this.handleChange} name="password" fluid label='password' placeholder='password' />
           <Form.TextArea onChange={this.handleChange} name="about" label='About' placeholder='Tell us more about you...' />
-          <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
+          <Form.Button color='blue' onClick={this.handleSubmit}>Confirm Changes</Form.Button>
+          <DeleteUser />
         </Form.Group>
 
       </Form>

@@ -3,7 +3,6 @@ import Logout from "./Logout";
 import { Image, Menu, Container } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import logo from "../logo.png";
-import DeleteUser from "./DeleteUser";
 
 export default class Navbar extends Component {
   state = { activeItem: "profile" };

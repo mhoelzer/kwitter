@@ -15,11 +15,15 @@ import { connect } from "react-redux";
 import MessageList from "./MessagesList";
 import ComposeMessage from "./ComposeMessage";
 import UserMessages from "./UserMessages";
+import NavBar from "./NavBar"
+
 
 class Sidebar1 extends Component {
   render() {
     return (
+      
       <Grid container stackable verticalAlign="middle">
+      <NavBar />
         <Grid.Row>
           <Grid.Column width={6}>
             <Card
