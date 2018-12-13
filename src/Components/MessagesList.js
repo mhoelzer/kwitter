@@ -61,19 +61,18 @@ export class MessagesList extends Component {
       <div
         style={{
           display: "flex",
-          justifyContent: "center"
+
         }}
       >
         <Container
           style={{
             display: "flex",
             flexDirection: "column",
-            border: "none"
+            alignItems: "center"
           }}
         >
           <Switch>
             <Route path="/feed" />
-            <Route path="/profile" />
           </Switch>
         </Container>
         

@@ -5,7 +5,6 @@ class Feed extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>feed</div>
         <MessagesList />
       </React.Fragment>
     );
