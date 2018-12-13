@@ -2,20 +2,54 @@
 import React, { Component } from "react";
 import { deleteUser } from "../Actions/actions";
 import { connect } from "react-redux";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Header, Icon, Modal, Divider } from "semantic-ui-react";
 // import DeleteUser from "./DeleteUser"
 // <DeleteUser/>
 
 class DeleteUser extends Component {
+  state = { modalOpen: false };
+
+  handleOpen = () => this.setState({ modalOpen: true });
+  handleClose = () => this.setState({ modalOpen: false });
   handleDeleteUser = event => {
     this.props.deleteUser(this.props.token);
+    this.setState({ modalOpen: false });
   };
+
   render() {
     return (
-      <Button onClick={this.handleDeleteUser}>
-        <Icon name="trash alternate outline" />
-        Delete User
-      </Button>
+      <Modal
+        trigger={
+          <Button onClick={this.handleOpen} color="red">
+            <Icon name="trash alternate outline" />
+            Delete User
+          </Button>
+        }
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+        size="tiny"
+      >
+        <Header
+          textAlign="center"
+          verticalAlign="middle"
+          icon="trash alternate outline"
+          as="h1"
+        >
+          Do you want to delete your account?
+          <Divider />
+          <Modal.Actions>
+            <Button.Group>
+              <Button color="green" onClick={this.handleDeleteUser}>
+                <Icon name="checkmark" /> Indeed!
+              </Button>
+              <Button.Or />
+              <Button color="red" onClick={this.handleClose}>
+                <Icon name="remove" /> Nope!
+              </Button>
+            </Button.Group>
+          </Modal.Actions>
+        </Header>
+      </Modal>
     );
   }
 }
