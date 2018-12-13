@@ -136,7 +136,7 @@ const kwitterReducer = (state = initialState, action) => {
     case UPDATE_USER:
       return state;
     case UPDATE_USER_SUCCESS:
-      return { ...state, loggedInUser: action.data };
+    return { ...state, loggedInUser: {...state.loggedInUser, ...action.data} };
     case UPDATE_USER_FAILURE: 
       return state;
     // always need to return somehtign
