@@ -30,14 +30,14 @@ export default class Navbar extends Component {
           exact
           to="/profile"
         />
-        <Menu.Item
+        {/* <Menu.Item
           name="kweets"
           as={Link}
           active={activeItem === "kweets"}
           onClick={this.handleItemClick}
           exact
           to="/messageslist"
-        />
+        /> */}
         <DeleteUser />
         <Logout />
       </Menu>

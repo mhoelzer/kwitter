@@ -65,9 +65,6 @@ class Sidebar1 extends Component {
               <UserMessages />
               {/* <MessageList />  */}{" "}
               {/* this will be for personal and making messages */}
-              <div>creasting your messages should go here</div>
-              <div>TESTsfdsd f, INGLD</div>
-              <div>messages should go here</div>
             </Segment>
           </Grid.Column>
         </Grid.Row>

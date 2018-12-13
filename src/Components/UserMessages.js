@@ -1,8 +1,29 @@
 import { MessagesList } from "./MessagesList";
 import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
+import React, { Fragment } from "react";
+import { Message, Form } from "semantic-ui-react";
 
-const mapStateToProps = state => {
+
+class UserMessages extends React.Component {
+
+userFeed = () => {
+  return (
+    <Form
+    style={{
+      display: "flex",
+      justifyContent: "center"
+    }}
+    >
+    </Form>
+  );
+};
+
+render() {
+  return <Fragment>{this.userFeed()}</Fragment>;
+  }
+}
+ const mapStateToProps = state => {
     return {
       messages: state.loggedInUser.messages.map(message => {
         const like = message.likes.find(
@@ -35,5 +56,4 @@ const mapStateToProps = state => {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(MessagesList);
-  
+  )(UserMessages);

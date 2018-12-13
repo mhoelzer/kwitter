@@ -76,7 +76,7 @@ export class MessagesList extends Component {
             <Route path="/profile" />
           </Switch>
         </Container>
-        <h2>Messaging Feed</h2>
+        
         {this.props.messages.map(message => (
           <Message
             key={message.id}

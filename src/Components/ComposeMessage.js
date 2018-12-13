@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Form, TextArea, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
 import { composeMessage } from "../Actions/actions";
 
 class ComposeMessage extends React.Component {
@@ -43,7 +42,7 @@ class ComposeMessage extends React.Component {
         />
         <Button
           style={{
-            color: "rgb(45,45,45)",
+            color: "green",
             padding: "5px"
           }}
           onClick={this.handleComposeMessageProfileButton}

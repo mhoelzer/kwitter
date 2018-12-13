@@ -1,77 +1,74 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
 import {
-  Divider,
-  Card,
-  Grid,
-  GridColumn
+ Button,
+ Card,
+ Divider,
+ Grid,
+ Header,
+ Image,
+ Menu,
+ Segment
 } from "semantic-ui-react";
+import MessageList from "./MessagesList";
 
 class Message extends Component {
   render() {
     return (
-      <Fragment>
-        <div>
-          <Card
+      <Grid container stackable verticalAlign="middle">
+        <Grid.Row>
+          <Grid.Column width={4}>
+            <Card
+            animation="overlay"
+            Inverted
+            vertical
+            width="thin"
             fluid
-            centered
-            style={{
-              border: "3px solid",
-              height: "auto",
-              padding: "1em",
-              marginBottom: "1em"
-            }}
           >
-            <Grid.Row
-              columns={2}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly"
-              }}
-            >
-              <Grid.Column
-                style={{
-                  display: "flex",
-                  alignItems: "center"
-                }}
-              >
-                <span>{this.props.username}</span>
-              </Grid.Column>
-              <Switch>
-                <Route path="/feed" />
-              </Switch>
-            </Grid.Row>
+          <Card.Content>
+            <Segment>
+              <Card.Header as="h3" textAlign="center">
+                {this.props.username}
+              </Card.Header>
+            </Segment>
+            <Card.Description>
+              <Card.Meta as="h3">Name:</Card.Meta>
+              {this.props.displayName}
+            </Card.Description>
+            <Card.Description>
+              <Card.Meta as="h3">Kweeted:</Card.Meta>
+              {this.props.text}
+            </Card.Description>
+            <Card.Description>
+              <Card.Meta as="h3">Likes:</Card.Meta>
+              {this.props.numOfLikes}
+            </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+            <Button size="small" color="twitter" fluid>
+            {this.props.numOfLikes} Like
+            </Button>
+            </Card.Content>
+            </Card>
 
-            <Grid.Row
-              columns={2}
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-evenly"
-              }}
-            >
-              <Grid.Column>
-                <Divider />
-                <img />
-                <Divider />
-              </Grid.Column>
-            </Grid.Row>
-          </Card>
-        </div>
-        <Fragment>
           {/* //   place props in styling, from fragment section. */}
-          <div>{this.props.text}</div>
-          <div>{this.props.username}</div>
+          {/* <div>{this.props.text}</div>
           <div>Kweeted by</div>
+          <div>{this.props.username}</div>
           <button onClick={this.props.toggleLike}>
             {this.props.isLiked ? "Unlike" : "Like"}
           </button>
-          <p>Likes: {this.props.numOfLikes}</p>
-        </Fragment>{" "}
-      </Fragment>
-    );
-  }
-};
-export default Message;
+          <p>Likes: {this.props.numOfLikes}</p> */}
+          </Grid.Column>
+          </Grid.Row>
+     </Grid>
+     );
+     }
+     }
+
+     const mapStateToProps = state => {
+       return {
+         displayName: state.loggedInUser.displayName
+       };
+     };
+export default connect(mapStateToProps)(Message);
