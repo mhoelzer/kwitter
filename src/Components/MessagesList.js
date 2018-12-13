@@ -1,4 +1,3 @@
-
 import React, { Component, Fragment } from "react";
 import { getMessages, toggleLike } from "../Actions/actions";
 import { connect } from "react-redux";
@@ -58,24 +57,7 @@ export class MessagesList extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center"
-        }}
-      >
-        <Container
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            border: "none"
-          }}
-        >
-          <Switch>
-            <Route path="/feed" />
-            <Route path="/profile" />
-          </Switch>
-        </Container>
+      <React.Fragment>
         <h2>Messaging Feed</h2>
         {this.props.messages.map(message => (
           <Message
@@ -87,7 +69,7 @@ export class MessagesList extends Component {
             isLiked={message.isLiked}
           />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -95,17 +77,20 @@ export class MessagesList extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages.map(message => {
+      const username = state.users[message.userId].username || "unknown"; 
       const like = message.likes.find(
         like => like.userId === state.authentication.id
       );
       if (like) {
         return {
           ...message,
+          username,
           isLiked: true
         };
       } else {
         return {
           ...message,
+          username,
           isLiked: false
         };
       }

@@ -32,6 +32,9 @@ export const GET_MESSAGE_BY_ID = "GET_MESSAGE_BY_ID";
 export const GET_MESSAGE_BY_ID_SUCCESS = "GET_MESSAGE_BY_ID_SUCCESS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const CREATE_MESSAGE_SUCCESS = "CREATE_MESSAGE_SUCCESS";
+export const GET_ANY_USER = "GET_ANY_USER";
+export const GET_ANY_USER_SUCCESS = "GET_ANY_USER_SUCCESS";
+export const GET_ANY_USER_FAILURE = "GET_ANY_USER_FAILURE";
 const kwitterURL = "https://kwitter-api.herokuapp.com";
 
 export const composeMessage = text => (dispatch, getState) => {
@@ -159,20 +162,20 @@ export const likeMessage = (userId, messageId, token) => dispatch => {
     });
 };
 
-export const addMess = ({ message, token }) => dispatch => {
-  fetch(`${kwitterURL}/messages`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      charset: "utf-8"
-    },
-    data: { text: message }
-  })
-    .then(() => {
-      dispatch(getMessages());
-    })
-    .catch(err => console.log(err));
-};
+// export const addMess = ({ message, token }) => dispatch => {
+//   fetch(`${kwitterURL}/messages`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       charset: "utf-8"
+//     },
+//     data: { text: message }
+//   })
+//     .then(() => {
+//       dispatch(getMessages());
+//     })
+//     .catch(err => console.log(err));
+// };
 
 export function getMessages() {
   return function(dispatch) {
@@ -190,6 +193,7 @@ export function getMessages() {
             messages: data.messages
           }
         });
+        data.messages.forEach(message => dispatch(getAnyUser(message.userId)))
       })
       .catch(err => {
         console.log(err);
@@ -259,6 +263,24 @@ export const getUserInfo = userId => dispatch => {
       dispatch({ type: GET_USER_FAILURE, err });
     });
 };
+export const getAnyUser = userId => dispatch => {
+  dispatch({ type: GET_ANY_USER });
+  fetch(`${kwitterURL}/users/${userId}`)
+    .then(response => {
+      if (!response.ok) {
+        response.json().then(err => {
+          throw err;
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      dispatch({ type: GET_ANY_USER_SUCCESS, data: data.user });
+    })
+    .catch(err => {
+      dispatch({ type: GET_ANY_USER_FAILURE, err });
+    });
+};
 
 export const logout = () => dispatch => {
   fetch(`${kwitterURL}/auth/logout`)
@@ -273,7 +295,7 @@ export const logout = () => dispatch => {
     .then(data => {
       dispatch({ type: LOGOUT_SUCCESS });
       dispatch(push("/"));
-      alert("Thanks for visiting KWITTER! Come back soon!");
+      // alert("Thanks for visiting KWITTER! Come back soon!");
     })
     .catch(err => {
       dispatch({ type: LOGOUT_FAILURE, err });
