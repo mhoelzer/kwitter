@@ -36,62 +36,63 @@ class Login extends Component {
     });
   };
 
-  render() {
+  render() { 
     return (
-      <div className="registerForm">
-        <Grid
-          textAlign="center"
-          style={{ height: "100%" }}
-          verticalAlign="middle"
-        >
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Image src={logo} size="medium" centered />
-            <Header as="h1" color="yellow" textAlign="center">
-              Login
-            </Header>
-            <Form size="large">
-              <Segment stacked>
-                <Form.Field
-                  label="Username:"
-                  required
-                  placeholder="Username"
-                  type="text"
-                  control={Input}
-                  autoFocus
-                  onChange={this.handleUsernameChange}
-                />
-                <Form.Field
-                  label="Password:"
-                  required
-                  placeholder="Password"
-                  type="password"
-                  control={Input}
-                  onChange={this.handlePasswordChange}
-                />
-                <Button.Group>
-                  {/* redirect */}
-                  {/* connected react router */}
-                  <Button
-                    onClick={this.handleLogin}
-                    positive
-                    size="large"
-                    to="/profile"
-                  >
-                    Login to Your Account!
+      <Grid
+        textAlign="center"
+        style={{ height: "100%" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header as="h1" color="black" textAlign="center">
+            Welcome to Kwitter!
+          </Header>
+          <Image src={logo} size="medium" centered />
+          <Header as="h2" color="grey" textAlign="center">
+            Login
+          </Header>
+          <Form size="large">
+            <Segment stacked color="grey">
+              <Form.Field
+                label="Username:"
+                required
+                placeholder="Username"
+                type="text"
+                control={Input}
+                autoFocus
+                onChange={this.handleUsernameChange}
+              />
+              <Form.Field
+                label="Password:"
+                required
+                placeholder="Password"
+                type="password"
+                control={Input}
+                onChange={this.handlePasswordChange}
+              />
+              <Button.Group>
+                {/* redirect */}
+                {/* connected react router */}
+                <Button
+                  onClick={this.handleLogin}
+                  positive
+                  size="large"
+                  to="/profile"
+                >
+                  Login to Your Account!
+                </Button>
+                <Button.Or />
+                <Link to="/register">
+                  <Button size="large" color="brown">
+                    Don't Have an Account? Register Here!
                   </Button>
-                  <Button.Or />
-                  <Link to="/register">
-                    <Button size="large" color="brown">
-                      Don't Have an Account? Register Here!
-                    </Button>
-                  </Link>
-                </Button.Group>
-                <div>{this.props.result}</div>
-              </Segment>
-            </Form>
-          </Grid.Column>
-        </Grid>
-      </div>
+                </Link>
+              </Button.Group>
+              <div>{this.props.result}</div>
+            </Segment>
+          </Form>
+        </Grid.Column>
+      </Grid>
     );
   }
 }
