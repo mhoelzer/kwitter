@@ -19,7 +19,7 @@ class App extends Component {
           <Route exact path="/profile" component={NavBar} />
           <Route exact path="/" component={null} />
           <Route exact path="/register" component={null} />
-          <Route exact path="*" component={null} />
+          {/* <Route exact path="*" component={null} /> */}
         </Switch>
         {/* <MessagesList /> */}
         <Switch>

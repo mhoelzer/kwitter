@@ -15,7 +15,7 @@ import { Provider } from "react-redux";
 import kwitterReducer from "./Reducers/reducer";
 import { createBrowserHistory } from "history";
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({basename: process.env.PUBLIC_URL});
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   connectRouter(history)(kwitterReducer),
