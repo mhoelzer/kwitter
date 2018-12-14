@@ -32,16 +32,14 @@ class Message extends Component {
               </Card.Header>
             </Segment>
             <Card.Description>
-              <Card.Meta as="h3">Name:</Card.Meta>
-              {this.props.displayName}
+              <Card.Meta as="h3">{this.props.displayName}</Card.Meta>
             </Card.Description>
             <Card.Description>
-              <Card.Meta as="h3">Kweeted:</Card.Meta>
-              {this.props.text}
+              <Card.Meta as="h3">{this.props.text}</Card.Meta>
             </Card.Description>
             <Card.Description>
               <Card.Meta as="h3">Likes:</Card.Meta>
-              {this.props.numOfLikes}
+              {this.props.numOfLikes} 
             </Card.Description>
             </Card.Content>
             <Card.Content extra>

@@ -31,7 +31,7 @@ class Sidebar1 extends Component {
               vertical
               width="thin"
               fluid
-            > 
+            >
               <Card.Content>
                 <Image src={logo} />
                 <Segment style={{ padding: "1em 0em" }} inverted color="green">
@@ -58,14 +58,17 @@ class Sidebar1 extends Component {
               </Card.Content>
             </Card>
           </Grid.Column>
+          <Grid.Row></Grid.Row>
           <Grid.Column floated="right" width={10}>
-            <Segment basic>
-              <Header as="h3">My Messages</Header>
+              <Header as="h3" attached='top' textAlign='center'>My Messages</Header>
+            <Segment vertical>
               <ComposeMessage />
-              <UserMessages />
+            </Segment>
+            <Segment vertical>
+                <UserMessages />
+            </Segment>
               {/* <MessageList />  */}{" "}
               {/* this will be for personal and making messages */}
-            </Segment>
           </Grid.Column>
         </Grid.Row>
       </Grid>
