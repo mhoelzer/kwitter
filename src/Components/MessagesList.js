@@ -81,7 +81,7 @@ export class MessagesList extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages.map(message => {
-      const username = state.users[message.userId].username || "unknown";
+      const username = (state.users[message.userId] && state.users[message.userId].username) || "unknown";
       const like = message.likes.find(
         like => like.userId === state.authentication.id
       );

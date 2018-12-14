@@ -280,8 +280,8 @@ export const updateMessageById = messageId => (dispatch, getState) => {
     const messageIndex = messages.findIndex(
       message => message.id === messageId
     );
-    // if (~messageIndex) {
-    if (messageIndex) {
+    // retrun index # or -1; if line 281 is no good
+    if (messageIndex !== -1) {
       dispatch({
         type: UPDATE_MESSAGE_BY_ID_SUCCESS,
         id: messageId,
@@ -390,7 +390,7 @@ export const likeMessage = (userId, messageId, token) => dispatch => {
 };
 
 export function getMessages() {
-  return function(dispatch) {
+  return function(dispatch, getState) {
     dispatch({ type: GET_MESSAGES });
     fetch(`${kwitterURL}/messages`)
       .then(res => {
@@ -405,7 +405,14 @@ export function getMessages() {
             messages: data.messages
           }
         });
-        data.messages.forEach(message => dispatch(getAnyUser(message.userId)));
+        data.messages.forEach(message => {
+          if(getState().users[message.userId]) {
+            return null
+          } else {
+            dispatch(getAnyUser(message.userId))
+          }
+        });
+        setTimeout(() => dispatch(getMessages()), 5000); // wrap dispatch
       })
       .catch(err => {
         console.log(err);

@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getMessages: () => {
-      dispatch(getMessages());
+      // dispatch(getMessages());
     },
     toggleLike: messageId => dispatch(toggleLike(messageId))
   };
