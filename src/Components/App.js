@@ -6,8 +6,6 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./Login";
 import EditProfile from "./EditProfile";
 import Register from "./Register";
-import Message from "./Message";
-import MessagesList from "./MessagesList";
 import NavBar from "./NavBar";
 
 class App extends Component {

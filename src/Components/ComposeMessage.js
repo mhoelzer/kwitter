@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Form, TextArea, Button } from "semantic-ui-react";
+import { Button, Form, TextArea } from "semantic-ui-react";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
 import { composeMessage } from "../Actions/actions";
 
 class ComposeMessage extends React.Component {

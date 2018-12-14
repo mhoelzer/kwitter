@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Logout from "./Logout";
-import { Image, Menu, Container } from "semantic-ui-react";
+import { Container, Image, Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import logo from "../logo.png";
 

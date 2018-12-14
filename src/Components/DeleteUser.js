@@ -1,10 +1,7 @@
-// this will get referenced in the edit profile
 import React, { Component } from "react";
 import { deleteUser } from "../Actions/actions";
 import { connect } from "react-redux";
-import { Button, Header, Icon, Modal, Divider } from "semantic-ui-react";
-// import DeleteUser from "./DeleteUser"
-// <DeleteUser/>
+import { Button, Divider, Header, Icon, Modal } from "semantic-ui-react";
 
 class DeleteUser extends Component {
   state = { modalOpen: false };
