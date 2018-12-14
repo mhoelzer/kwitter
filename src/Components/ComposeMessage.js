@@ -19,10 +19,10 @@ class ComposeMessage extends React.Component {
     }
   };
 
-  handleComposeMessageProfileButton = event => {
-    this.props.composeMessage(this.state.text);
-    this.setState({ text: "" });
-  };
+  // handleComposeMessageProfileButton = event => {
+  //   this.props.composeMessage(this.state.text);
+  //   this.setState({ text: "" });
+  // };
 
   displayFeed = () => {
     return (
@@ -36,7 +36,7 @@ class ComposeMessage extends React.Component {
           placeholder="What would you like to Kweet about today?"
           onChange={this.handleMessageSubmit}
           value={this.state.text}
-          onKeyPress={this.handleComposeMessageProfileEnter}
+          // onKeyPress={this.handleComposeMessageProfileEnter}
           maxLength="255"
           style={{ maxWidth: "36em" }}
         />

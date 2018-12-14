@@ -56,24 +56,22 @@ export class MessagesList extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Grid container stackable>
-          <Grid.Row>
-            <Grid.Column>
-              {this.props.messages.map(message => (
-                <Message
-                  key={message.id}
-                  text={message.text}
-                  username={message.username}
-                  toggleLike={() => this.props.toggleLike(message.id)}
-                  numOfLikes={message.likes.length}
-                  isLiked={message.isLiked}
-                />
-              ))}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </React.Fragment>
+      <Grid container stackable>
+        <Grid.Row>
+          <Grid.Column>
+            {this.props.messages.map(message => (
+              <Message
+                key={message.id}
+                text={message.text}
+                username={message.username}
+                toggleLike={() => this.props.toggleLike(message.id)}
+                numOfLikes={message.likes.length}
+                isLiked={message.isLiked}
+              />
+            ))}
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
@@ -81,7 +79,9 @@ export class MessagesList extends Component {
 const mapStateToProps = state => {
   return {
     messages: state.messages.map(message => {
-      const username = (state.users[message.userId] && state.users[message.userId].username) || "unknown";
+      const username =
+        (state.users[message.userId] && state.users[message.userId].username) ||
+        "unknown";
       const like = message.likes.find(
         like => like.userId === state.authentication.id
       );

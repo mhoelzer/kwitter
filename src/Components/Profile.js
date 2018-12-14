@@ -63,6 +63,7 @@ class Profile extends Component {
                 My Messages
               </Header>
               <ComposeMessage />
+              <Divider/>
               <UserMessages />
             </Segment>
           </Grid.Column>
