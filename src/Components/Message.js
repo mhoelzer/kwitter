@@ -1,7 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
-import { Divider, Card, Grid, GridColumn } from "semantic-ui-react";
+import { Divider, Card } from "semantic-ui-react";
 
 class Message extends Component {
   render() {

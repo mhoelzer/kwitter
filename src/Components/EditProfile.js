@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import {
-  Button,
   Form,
   Grid,
   Header,
   Icon,
-  Image,
-  Input,
   Segment
 } from "semantic-ui-react";
 import { connect } from "react-redux";

@@ -5,7 +5,7 @@ class Feed extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1 style={{textAlign:"center"}}>Feed</h1>
+        <h1 style={{ textAlign: "center" }}>Feed</h1>
         <MessagesList />
       </React.Fragment>
     );

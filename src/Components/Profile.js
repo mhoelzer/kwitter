@@ -14,9 +14,8 @@ import logo from "../logo.png";
 import { connect } from "react-redux";
 import ComposeMessage from "./ComposeMessage";
 import UserMessages from "./UserMessages";
-import { react } from "babel-types";
 
-class Sidebar1 extends Component {
+class Profile extends Component {
   render() {
     return (
       <Grid container stackable>
@@ -60,7 +59,9 @@ class Sidebar1 extends Component {
           </Grid.Column>
           <Grid.Column floated="right" width={10}>
             <Segment basic>
-              <Header as="h1" textAlign="center">My Messages</Header>
+              <Header as="h1" textAlign="center">
+                My Messages
+              </Header>
               <ComposeMessage />
               <UserMessages />
             </Segment>
@@ -88,4 +89,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   profilePicture
-)(Sidebar1);
+)(Profile);

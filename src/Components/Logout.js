@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Dimmer, Header, Icon, Menu, Divider } from "semantic-ui-react";
+import { Button, Dimmer, Divider, Header, Icon, Menu } from "semantic-ui-react";
 import { logout } from "../Actions/actions";
 import { connect } from "react-redux";
 
