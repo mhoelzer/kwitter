@@ -4,12 +4,18 @@
   "private": true,
   "homepage": "https://mhoelzer.github.io/kwitter/",
   "dependencies": {
+    "axios": "^0.18.0",
+    "connected-react-router": "^4.5.0",
     "gh-pages": "^2.0.1",
+    "history": "^4.7.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "semantic-ui": "^2.4.2"
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^0.83.0"
   },
   "scripts": {
     "predeploy": "npm run build",
